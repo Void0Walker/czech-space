@@ -1,65 +1,112 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from "react";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import ProTip from "../components/ProTip";
+import Link from "../components/Link";
+import AppBar from "../components/common/AppBar";
+import HomeCarousel from "../components/homepage/HomeCarousel";
+import { Grid } from "@material-ui/core";
+import ResponsiveCard from "../components/homepage/ResponsiveCard";
 
-export default function Home() {
+const articles = [
+  {
+    id: 1,
+    title: "O TERMINOLOGII",
+    shortDesc: `Pohyb je základní přírodní jev, fenomén, který patří k nejrůznějším
+projevům všech součástí našeho světa. Jeho druhů může být vícero a
+proto je i v lidské řeči, češtinu nevyjímaje, řada výrazů, kterými
+jsou tyto pohyby nazývány. Fyzická konstituce těla člověku umožňuje
+vlastní silou pohyb po pevném povrchu. Tedy ve dvou rozměrech, když
+ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
+    img: "/space-carousel/gtnasa.jpg",
+    alt: "nasa",
+    category: "other",
+  },
+  {
+    id: 2,
+    title: "VZHŮRU NA MĚSÍC",
+    shortDesc: `Česká kosmická kancelář navázala spolupráci s americkou společností Astrobotic Technology, která našim pracovištím nabízí dopravu malého vědeckého zařízení na povrch Měsíce. Bližší informace o technických i finančních aspektech budou poskytnuty na připravovaném workshopu, který se uskuteční 23. listopadu 2017 v kanceláři CSO.`,
+    img: "/space-carousel/n42_lander_all.jpeg",
+    alt: "lander_all",
+    category: "space",
+  },
+  {
+    id: 3,
+    title: "OVLIVNĚTE VÝZKUM NA ISS",
+    shortDesc: `Evropská kosmická agentura vyzývá vědeckou komunitu k účasti na diskuzi o budoucím výzkumu zaměřeném na biologii rostlin v podmínkách kosmického letu. K této příležitosti uspořádá 20. listopadu 2017 workshop, který se uskuteční ve středisku ESA ESTEC. Výstupy ovlivní chystanou výzvu na nové experimenty pro ISS.`,
+    img: "/space-carousel/n41_plants.jpg",
+    alt: "lander_all",
+    category: "news",
+  },
+  {
+    id: 3,
+    title: "KOSMICKÁ AKADEMIE 2017",
+    shortDesc: `Česká kosmická kancelář zahájila druhý ročník vzdělávacího projektu Space Academy – Kosmická akademie pro nadané studenty. Letos se jej účastní celkem 13 chlapců a děvčat ve věku od 10 do 18 let, pro které je připraven bohatý program spojený s návštěvou zajímavých míst a osobností české kosmonautiky.`,
+    img: "/space-carousel/01-ucastnici.jpg",
+    alt: "people",
+    category: "vox-populi",
+  },
+  {
+    id: 4,
+    title: "VĚDA PRO DSG",
+    shortDesc: `Česká kosmická kancelář zahájila druhý ročník vzdělávacího projektu Space Academy – Kosmická akademie pro nadané studenty. Letos se jej účastní celkem 13 chlapců a děvčat ve věku od 10 do 18 let, pro které je připraven bohatý program spojený s návštěvou zajímavých míst a osobností české kosmonautiky.`,
+    img: "/space-carousel/n40_dsg.jpg",
+    alt: "lander_all",
+    category: "space",
+  },
+  {
+    id: 5,
+    title: "POVÍDÁNÍ S ASTRONAUTKOU",
+    shortDesc: `Čeští studenti se ve středu 27. září 2017 setkali se s americkou astronautkou Dorothy Metcalf-Lindenburgerovou, jež se v roce 2010 vydala na patnáctidenní misi raketoplánu Discovery k Mezinárodní kosmické stanici. Vzdělávací akci uspořádala Česká kosmická kancelář ve spolupráci s Americkým centrem Velvyslanectví USA v Praze.`,
+    img: "/space-carousel/metc09.jpg",
+    alt: "lander_all",
+    category: "vox-populi",
+  },
+];
+const colorMap = {
+  space: "#231F20",
+  other: "#f44336",
+  news: "#262261",
+  "vox-populi": "#F05A28",
+};
+export default function Index({ page }) {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+    <React.Fragment>
+      <AppBar position="fixed" page={page} />
+      <Container
+        maxWidth={"lg"}
+        style={{ display: "flex", alignContent: "center" }}
+      >
+        <Grid
+          container
+          style={{ marginTop: 100 }}
+          spacing={4}
+          // direction={"row"}
+          justify="flex-start"
+          wrap="wrap"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+          {articles.map((e) => (
+            <Grid item xs={12} lg={3} xl={3}>
+              <ResponsiveCard
+                key={e.id}
+                customColor={colorMap[e.category]}
+                image={e.img}
+                shortDesc={e.shortDesc}
+                title={e.title}
+                alt={e.alt}
+              ></ResponsiveCard>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </React.Fragment>
+  );
+}
+
+export async function getServerSideProps(context) {
+  const page = "/";
+  return {
+    props: { page }, // will be passed to the page component as props
+  };
 }

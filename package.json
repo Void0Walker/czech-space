@@ -8,8 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "9.5.3",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.9.1",
+    "clsx": "latest",
+    "next": "latest",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-multi-carousel": "^2.5.5",
+    "react-responsive-carousel": "^3.2.9",
+    "simple-react-lightbox": "^3.3.4-1"
   }
 }
