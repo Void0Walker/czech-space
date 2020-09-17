@@ -5,6 +5,7 @@ import Box from "@material-ui/core/Box";
 import ProTip from "../components/ProTip";
 import Link from "../components/Link";
 import AppBar from "../components/common/AppBar";
+import Footer from "../components/common/Footer";
 import HomeCarousel from "../components/homepage/HomeCarousel";
 import { Grid } from "@material-ui/core";
 import ResponsiveCard from "../components/homepage/ResponsiveCard";
@@ -40,7 +41,7 @@ ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
     category: "news",
   },
   {
-    id: 3,
+    id: 4,
     title: "KOSMICKÁ AKADEMIE 2017",
     shortDesc: `Česká kosmická kancelář zahájila druhý ročník vzdělávacího projektu Space Academy – Kosmická akademie pro nadané studenty. Letos se jej účastní celkem 13 chlapců a děvčat ve věku od 10 do 18 let, pro které je připraven bohatý program spojený s návštěvou zajímavých míst a osobností české kosmonautiky.`,
     img: "/space-carousel/01-ucastnici.jpg",
@@ -48,7 +49,7 @@ ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
     category: "vox-populi",
   },
   {
-    id: 4,
+    id: 5,
     title: "VĚDA PRO DSG",
     shortDesc: `Česká kosmická kancelář zahájila druhý ročník vzdělávacího projektu Space Academy – Kosmická akademie pro nadané studenty. Letos se jej účastní celkem 13 chlapců a děvčat ve věku od 10 do 18 let, pro které je připraven bohatý program spojený s návštěvou zajímavých míst a osobností české kosmonautiky.`,
     img: "/space-carousel/n40_dsg.jpg",
@@ -56,7 +57,7 @@ ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
     category: "space",
   },
   {
-    id: 5,
+    id: 6,
     title: "POVÍDÁNÍ S ASTRONAUTKOU",
     shortDesc: `Čeští studenti se ve středu 27. září 2017 setkali se s americkou astronautkou Dorothy Metcalf-Lindenburgerovou, jež se v roce 2010 vydala na patnáctidenní misi raketoplánu Discovery k Mezinárodní kosmické stanici. Vzdělávací akci uspořádala Česká kosmická kancelář ve spolupráci s Americkým centrem Velvyslanectví USA v Praze.`,
     img: "/space-carousel/metc09.jpg",
@@ -70,36 +71,33 @@ const colorMap = {
   news: "#262261",
   "vox-populi": "#F05A28",
 };
-export default function Index({ page }) {
+export default function Index() {
   return (
     <React.Fragment>
-      <AppBar position="fixed" page={page} />
-      <Container
-        maxWidth={"lg"}
-        style={{ display: "flex", alignContent: "center" }}
+      <Grid
+        container
+        style={{ marginTop: 100 }}
+        spacing={4}
+        justify="flex-start"
+        wrap="wrap"
       >
-        <Grid
-          container
-          style={{ marginTop: 100 }}
-          spacing={4}
-          // direction={"row"}
-          justify="flex-start"
-          wrap="wrap"
-        >
-          {articles.map((e) => (
-            <Grid item xs={12} lg={3} xl={3}>
-              <ResponsiveCard
-                key={e.id}
-                customColor={colorMap[e.category]}
-                image={e.img}
-                shortDesc={e.shortDesc}
-                title={e.title}
-                alt={e.alt}
-              ></ResponsiveCard>
-            </Grid>
-          ))}
+        <Grid item xs={12}>
+          <Typography style={{ fontSize: "2rem", fontWeight: 600 }}>
+            HLAVNÍ STRANKA
+          </Typography>
         </Grid>
-      </Container>
+        {articles.map((e) => (
+          <Grid item xs={12} lg={3} xl={3} key={e.id}>
+            <ResponsiveCard
+              customColor={colorMap[e.category]}
+              image={e.img}
+              shortDesc={e.shortDesc}
+              title={e.title}
+              alt={e.alt}
+            ></ResponsiveCard>
+          </Grid>
+        ))}
+      </Grid>
     </React.Fragment>
   );
 }

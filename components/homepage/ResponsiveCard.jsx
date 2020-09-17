@@ -37,7 +37,7 @@ export default function ResponsiveCard({
   return (
     <Card className={classes.root} style={{ borderColor: `${customColor}` }}>
       <CardActionArea>
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", width: "100%" }}>
           <img
             alt={alt}
             src={image}

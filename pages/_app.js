@@ -4,6 +4,7 @@ import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "./theme";
+import Layout from "../components/layouts/Main";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 export default function MyApp(props) {
@@ -27,7 +28,9 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <Layout {...pageProps}>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </React.Fragment>
   );

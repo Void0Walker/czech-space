@@ -12,6 +12,8 @@ import InfoIcon from "@material-ui/icons/Info";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 import ArchiveIcon from "@material-ui/icons/Archive";
+import Router from "next/router";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -116,33 +118,30 @@ export default function ButtonAppBar({ page }) {
   return (
     <div className={classes.root}>
       <AppBar elevation={4} className={classes.appBar}>
-        {/* <div
-          style={{
-            background: "#003F5F",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        > */}
         <div style={{ marginRight: "10%" }}>
           <img src={"/logo.png"} alt="cso"></img>
         </div>
-        {/* <Typography
-          component="div"
-          style={{ color: "white", fontSize: "1.2rem", flexGrow: 1 }}
-        >
-          CZECH SPACE OFFICE
-        </Typography> */}
-
         <div
           className={`${classes.navigationEntryAktuality} ${
             page === "/" ? classes.active : ""
           }`}
+          onClick={(event) => {
+            event.preventDefault();
+            Router.push("/  ");
+          }}
         >
           <HomeIcon></HomeIcon>
-          <Typography style={{ fontSize: "0.9rem" }}>Domu</Typography>
+          <Typography style={{ fontSize: "0.9rem" }}>DOMU</Typography>
         </div>
-        <div className={classes.navigationEntryAktuality}>
+        <div
+          className={`${classes.navigationEntryAktuality} ${
+            page === "/cs/aktuality" ? classes.active : ""
+          }`}
+          onClick={(event) => {
+            event.preventDefault();
+            Router.push("/cs/aktuality");
+          }}
+        >
           <LibraryBooksIcon />
           <Typography style={{ fontSize: "0.9rem" }}>AKTUALITY</Typography>
         </div>
