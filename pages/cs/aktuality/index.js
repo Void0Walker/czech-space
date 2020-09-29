@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import ArticleRow from "../../../components/aktuality/ArticleRow";
 import Link from "../../../components/Link";
+// import n from "normalize-strings";
 
 const colorMap = {
   space: "#231F20",
@@ -38,7 +39,7 @@ const articles = [
     articleDate: "2019-12-31",
   },
   {
-    id: 1,
+    id: 3,
     articleTitle: "POJĎME VYUŽÍT ISS",
     articleImage: "/articles/n44_columbus.jpg",
     articleAlt: "n44_columbus",
@@ -48,7 +49,7 @@ const articles = [
     articleDate: "2019-12-31",
   },
   {
-    id: 1,
+    id: 4,
     articleTitle: "ČESKÉ STUDENTSKÉ EXPERIMENTY LETĚLY DO STRATOSFÉRY",
     articleImage: "/articles/styl2340e.jpg",
     articleAlt: "styl2340e",
@@ -59,7 +60,7 @@ const articles = [
   },
 ];
 
-export default function Aktuality() {
+export default function Aktuality({ page }) {
   return (
     <Grid
       container
@@ -69,14 +70,24 @@ export default function Aktuality() {
       wrap="wrap"
     >
       {articles.map((e) => (
-        <ArticleRow {...e} customColor={colorMap[e.category]} />
+        <ArticleRow
+          {...e}
+          key={e.id}
+          customColor={colorMap[e.category]}
+          page={page}
+        />
       ))}
     </Grid>
   );
 }
 
 export async function getServerSideProps(context) {
-  const page = "/cs/aktuality";
+  const page = context.req.url;
+
+  // articles.forEach((e) => {
+  //   e["articleUrl"] = n(e.articleTitle).toLowerCase().replace(/\s/gi, "-");
+  // });
+
   return {
     props: { page }, // will be passed to the page component as props
   };

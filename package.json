@@ -12,6 +12,7 @@
     "@material-ui/icons": "^4.9.1",
     "clsx": "latest",
     "next": "latest",
+    "normalize-strings": "^1.1.0",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",

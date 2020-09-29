@@ -6,6 +6,9 @@ import {
   makeStyles,
   Button,
 } from "@material-ui/core";
+import Link from "../Link";
+import { useRouter } from "next/router";
+import n from "normalize-strings";
 
 const useStyles = makeStyles((theme) => ({
   articleSection: {
@@ -29,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "2px 0px 5px grey, -2px 0px 5px grey",
     borderRight: "8px solid black",
     background: "white",
+    textDecoration: "none",
+    color: "black",
   },
 }));
 
@@ -40,11 +45,13 @@ export default function ArticleRow({
   articleTitle,
   articleAuthor,
   customColor,
+  page,
 }) {
+  const router = useRouter();
   const classes = useStyles();
   return (
     <Grid container item xs={12}>
-      <Grid xs={12} md={4} lg={4} xl={4}>
+      <Grid item xs={12} md={4} lg={4} xl={4}>
         <div
           className={classes.articleImage}
           style={{
@@ -57,6 +64,12 @@ export default function ArticleRow({
         ></div>
       </Grid>
       <Grid
+        item
+        component={Link}
+        href={`${router.pathname}/${n(articleTitle)
+          .toLowerCase()
+          .replace(/\s/gi, "-")}`}
+        naked={true}
         xs={12}
         md={8}
         lg={8}

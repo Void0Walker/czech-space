@@ -33,7 +33,6 @@ export default function ResponsiveCard({
 }) {
   const classes = useStyles();
 
-  console.log(customColor);
   return (
     <Card className={classes.root} style={{ borderColor: `${customColor}` }}>
       <CardActionArea>

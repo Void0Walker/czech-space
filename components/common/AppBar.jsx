@@ -110,6 +110,16 @@ const useStyles = makeStyles((theme) => ({
     background: "#f44336",
     color: "white",
   },
+  search: {
+    padding: 24,
+    width: "25%",
+    textAlign: "left",
+    marginLeft: "auto",
+    marginRight: 0,
+    cursor: "pointer",
+    background: "#005a88",
+    color: "white",
+  },
 }));
 
 export default function ButtonAppBar({ page }) {
@@ -157,7 +167,9 @@ export default function ButtonAppBar({ page }) {
           <ArchiveIcon />
           <Typography style={{ fontSize: "0.9rem" }}>ARCHIV</Typography>
         </div>
-        {/* </div> */}
+        <div className={classes.search}>
+          <Typography>Hledání...</Typography>
+        </div>
       </AppBar>
     </div>
   );
