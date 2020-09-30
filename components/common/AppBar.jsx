@@ -39,20 +39,13 @@ const useStyles = makeStyles((theme) => ({
     // marginRight: "auto",
   },
   navigationEntryAktuality: {
-    // borderTopLeftRadius: 12,
-    // borderBottomLeftRadius: 12,
     background: "#003F5F",
     color: "white",
-    // fontSize: "0.8rem",
-    // fontWeight: 700,
     padding: 12,
     width: "12%",
     textAlign: "center",
-    // borderLeft: "1px solid white",
-    // borderRight: "4px solid #003F5F",
     cursor: "pointer",
     "&:hover": {
-      // background: "#ef6c00",
       background: "#f44336",
       color: "white",
       borderRight: "white",
@@ -64,13 +57,10 @@ const useStyles = makeStyles((theme) => ({
     padding: 12,
     width: "12%",
     textAlign: "center",
-    // borderRight: "4px solid #003F5F",
     cursor: "pointer",
     "&:hover": {
-      // background: "#388e3c",
       background: "#f44336",
       color: "white",
-      // borderRight: "white",
     },
   },
   navigationPrilezitosti: {
@@ -79,13 +69,10 @@ const useStyles = makeStyles((theme) => ({
     padding: 12,
     width: "12%",
     textAlign: "center",
-    // borderRight: "4px solid #003F5F",
     cursor: "pointer",
     "&:hover": {
       background: "#f44336",
-      // background: "#0288d1",
       color: "white",
-      // borderRight: "white",
     },
   },
   navigationArchiv: {
@@ -155,15 +142,39 @@ export default function ButtonAppBar({ page }) {
           <LibraryBooksIcon />
           <Typography style={{ fontSize: "0.9rem" }}>AKTUALITY</Typography>
         </div>
-        <div className={classes.navigationEntryOnas}>
+        <div
+          className={`${classes.navigationEntryOnas} ${
+            page === "/cs/o-nas" ? classes.active : ""
+          }`}
+          onClick={(event) => {
+            event.preventDefault();
+            Router.push("/cs/o-nas");
+          }}
+        >
           <InfoIcon></InfoIcon>
           <Typography style={{ fontSize: "0.9rem" }}>O NÁS</Typography>
         </div>
-        <div className={classes.navigationPrilezitosti}>
+        <div
+          className={`${classes.navigationPrilezitosti} ${
+            page === "/cs/prilezitosti" ? classes.active : ""
+          }`}
+          onClick={(event) => {
+            event.preventDefault();
+            Router.push("/cs/prilezitosti");
+          }}
+        >
           <FlashOnIcon />
           <Typography style={{ fontSize: "0.9rem" }}>PŘÍLEŽITOSTI</Typography>
         </div>
-        <div className={classes.navigationArchiv}>
+        <div
+          className={`${classes.navigationArchiv} ${
+            page === "/cs/archiv" ? classes.active : ""
+          }`}
+          onClick={(event) => {
+            event.preventDefault();
+            Router.push("/cs/archiv");
+          }}
+        >
           <ArchiveIcon />
           <Typography style={{ fontSize: "0.9rem" }}>ARCHIV</Typography>
         </div>

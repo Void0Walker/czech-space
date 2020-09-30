@@ -35,7 +35,10 @@ export default function SimpleBreadcrumbs(props) {
         color="inherit"
         component={Link}
         naked
-        style={{ color: props.pages.friendlyURL ? "" : "#005A88" }}
+        style={{
+          color: props.pages.friendlyURL ? "" : "#005A88",
+          fontWeight: props.pages.friendlyURL ? "" : 600,
+        }}
         href={props.pages.subpagePath}
         as={props.pages.subpagePath}
       >
@@ -45,7 +48,7 @@ export default function SimpleBreadcrumbs(props) {
         <Typography
           className={classes.crumbStyle}
           component={Link}
-          style={{ color: "#005A88" }}
+          style={{ color: "#005A88", fontWeight: 600 }}
           naked
           href={props.pages.friendlyURL}
         >

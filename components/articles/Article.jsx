@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Article({ article }) {
+export default function Article({ article, altFloat }) {
   const classes = useStyles();
   return (
     <div>
@@ -21,7 +21,7 @@ export default function Article({ article }) {
         </Typography>
         <div
           style={{
-            float: "left",
+            float: altFloat ? "center" : "left",
             width: 400,
           }}
         >

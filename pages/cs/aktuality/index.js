@@ -51,6 +51,16 @@ const articles = [
     category: "space",
     articleDate: "2018-10-04",
   },
+  {
+    id: 5,
+    articleTitle: "OVLIVNĚTE VÝZKUM NA ISS",
+    articleImage: "/articles/n41_plants.jpg",
+    articleAlt: "styl2340e",
+    articleDesc:
+      "Evropská kosmická agentura vyzývá vědeckou komunitu k účasti na diskuzi o budoucím výzkumu zaměřeném na biologii rostlin v podmínkách kosmického letu. K této příležitosti uspořádá 20. listopadu 2017 workshop, který se uskuteční ve středisku ESA ESTEC. Výstupy ovlivní chystanou výzvu na nové experimenty pro ISS.",
+    category: "news",
+    articleDate: "2. listopadu 2017",
+  },
 ];
 
 export default function Aktuality({ page, bredCrumbPages }) {

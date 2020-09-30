@@ -1,26 +1,37 @@
 import React from "react";
-import { makeStyles, Grid, Typography } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  footerRoot: {
+    display: "flex",
+    background: "#003F5F",
+    padding: 4,
+    justifyContent: "space-between",
+    marginTop: 50,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: "110px",
+  },
+  footerContainer: {
+    display: "flex",
+    alignItems: "flex-start",
+    flexDirection: "column",
+  },
+  footerEmail: {
+    marginLeft: 12,
+    marginRight: 12,
+    padding: 8,
+    alignSelf: "center",
+  },
+}));
 
 export default function Footer() {
+  const classes = useStyles();
   return (
-    <div
-      style={{
-        display: "flex",
-        marginTop: 50,
-        width: "100%",
-        background: "#003F5F",
-        padding: 8,
-        justifyContent: "space-between",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          flexDirection: "column",
-        }}
-      >
+    <div className={classes.footerRoot}>
+      <div className={classes.footerContainer}>
         <img
           src={"/logo.png"}
           alt="cso"
@@ -38,14 +49,7 @@ export default function Footer() {
           </Typography>
         </div>
       </div>
-      <div
-        style={{
-          marginLeft: 12,
-          marginRight: 12,
-          padding: 8,
-          alignSelf: "center",
-        }}
-      >
+      <div className={classes.footerEmail}>
         <Typography style={{ color: "white", fontSize: "1 rem" }}>
           info@czech-space.cz
         </Typography>

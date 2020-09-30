@@ -23,6 +23,7 @@ ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
     img: "/space-carousel/gtnasa.jpg",
     alt: "nasa",
     category: "other",
+    articleUrl: "/cs/o-nas/o-terminologii",
   },
   {
     id: 2,
@@ -31,6 +32,7 @@ ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
     img: "/space-carousel/n42_lander_all.jpeg",
     alt: "lander_all",
     category: "space",
+    articleUrl: "/cs/o-nas/vzhuru-na-mesic",
   },
   {
     id: 3,
@@ -38,7 +40,8 @@ ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
     shortDesc: `Evropská kosmická agentura vyzývá vědeckou komunitu k účasti na diskuzi o budoucím výzkumu zaměřeném na biologii rostlin v podmínkách kosmického letu. K této příležitosti uspořádá 20. listopadu 2017 workshop, který se uskuteční ve středisku ESA ESTEC. Výstupy ovlivní chystanou výzvu na nové experimenty pro ISS.`,
     img: "/space-carousel/n41_plants.jpg",
     alt: "lander_all",
-    category: "news",
+    articleUrl: "/cs/aktuality/ovlivnete-vyzkum-na-iss",
+    category: "",
   },
   {
     id: 4,
@@ -47,6 +50,7 @@ ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
     img: "/space-carousel/01-ucastnici.jpg",
     alt: "people",
     category: "vox-populi",
+    articleUrl: "/cs/o-nas/kosmicka-akademie-2017",
   },
   {
     id: 5,
@@ -55,6 +59,7 @@ ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
     img: "/space-carousel/n40_dsg.jpg",
     alt: "lander_all",
     category: "space",
+    articleUrl: "/cs/prilezitosti/veda-pro-dsg",
   },
   {
     id: 6,
@@ -63,6 +68,7 @@ ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
     img: "/space-carousel/metc09.jpg",
     alt: "lander_all",
     category: "vox-populi",
+    articleUrl: "/cs/o-nas/povidani-s-astronautkou",
   },
 ];
 const colorMap = {
@@ -94,6 +100,7 @@ export default function Index() {
               shortDesc={e.shortDesc}
               title={e.title}
               alt={e.alt}
+              articleUrl={e.articleUrl}
             ></ResponsiveCard>
           </Grid>
         ))}
