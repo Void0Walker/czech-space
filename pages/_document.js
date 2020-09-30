@@ -6,14 +6,20 @@ import theme from "../components/theme";
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" style={{ position: "relative", minHeight: "100%" }}>
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="stylesheet" href="/fonts/open-sans.css" />
           <link rel="stylesheet" href="/fonts/rationale.css" />
         </Head>
-        <body>
+        <body
+        // style={{
+        //   minHeight: "100vh",
+        //   // display: "flex",
+        //   // flexDirection: "column",
+        // }}
+        >
           <Main />
           <NextScript />
         </body>

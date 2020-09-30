@@ -11,6 +11,7 @@ export default function Footer() {
         background: "#003F5F",
         padding: 8,
         justifyContent: "space-between",
+        overflow: "hidden",
       }}
     >
       <div

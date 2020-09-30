@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  Container,
-  Typography,
-  Grid,
-  makeStyles,
-  Divider,
-} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import ArticleRow from "../../../components/aktuality/ArticleRow";
-import Link from "../../../components/Link";
-// import n from "normalize-strings";
+import BreadCrumbs from "../../../components/common/BreadCrumbs";
 
 const colorMap = {
   space: "#231F20",
@@ -60,15 +53,18 @@ const articles = [
   },
 ];
 
-export default function Aktuality({ page }) {
+export default function Aktuality({ page, bredCrumbPages }) {
   return (
     <Grid
       container
-      style={{ marginTop: 100 }}
-      spacing={5}
+      style={{ marginTop: 88 }}
+      spacing={3}
       justify="flex-start"
       wrap="wrap"
     >
+      <Grid item xs={12}>
+        <BreadCrumbs pages={bredCrumbPages} />
+      </Grid>
       {articles.map((e) => (
         <ArticleRow
           {...e}
@@ -82,13 +78,18 @@ export default function Aktuality({ page }) {
 }
 
 export async function getServerSideProps(context) {
-  const page = context.req.url;
+  const pageTitle = "Aktuality | Czech Space";
 
+  const page = "/cs/aktuality";
+  const bredCrumbPages = {
+    subpageName: "Aktuality",
+    subpagePath: "/cs/aktuality",
+  };
   // articles.forEach((e) => {
   //   e["articleUrl"] = n(e.articleTitle).toLowerCase().replace(/\s/gi, "-");
   // });
 
   return {
-    props: { page }, // will be passed to the page component as props
+    props: { page, pageTitle, bredCrumbPages }, // will be passed to the page component as props
   };
 }

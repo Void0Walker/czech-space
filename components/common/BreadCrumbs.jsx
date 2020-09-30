@@ -1,7 +1,6 @@
 import React from "react";
 import { Breadcrumbs, makeStyles, Typography } from "@material-ui/core";
 import Link from "../Link";
-import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleBreadcrumbs(props) {
-  const router = useRouter();
   const classes = useStyles();
   return (
     <Breadcrumbs aria-label="breadcrumb" className={classes.root}>
@@ -37,20 +35,25 @@ export default function SimpleBreadcrumbs(props) {
         color="inherit"
         component={Link}
         naked
+        style={{ color: props.pages.friendlyURL ? "" : "#005A88" }}
         href={props.pages.subpagePath}
         as={props.pages.subpagePath}
       >
         {props.pages.subpageName}
       </Typography>
-      <Typography
-        className={classes.crumbStyle}
-        component={Link}
-        style={{ color: "#005A88" }}
-        naked
-        href={props.pages.friendlyURL}
-      >
-        {props.pages.name}
-      </Typography>
+      {props.pages.friendlyURL ? (
+        <Typography
+          className={classes.crumbStyle}
+          component={Link}
+          style={{ color: "#005A88" }}
+          naked
+          href={props.pages.friendlyURL}
+        >
+          {props.pages.name}
+        </Typography>
+      ) : (
+        ""
+      )}
     </Breadcrumbs>
   );
 }

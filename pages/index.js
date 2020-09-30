@@ -103,8 +103,9 @@ export default function Index() {
 }
 
 export async function getServerSideProps(context) {
+  const pageTitle = "Hlavní | Czech Space";
   const page = "/";
   return {
-    props: { page }, // will be passed to the page component as props
+    props: { page, pageTitle }, // will be passed to the page component as props
   };
 }
