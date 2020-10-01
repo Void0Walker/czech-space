@@ -93,7 +93,7 @@ export default function Index() {
           </Typography>
         </Grid>
         {articles.map((e) => (
-          <Grid item xs={12} lg={3} xl={3} key={e.id}>
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={e.id}>
             <ResponsiveCard
               customColor={colorMap[e.category]}
               image={e.img}

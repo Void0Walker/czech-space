@@ -12,7 +12,6 @@ import n from "normalize-strings";
 
 const useStyles = makeStyles((theme) => ({
   articleSection: {
-    // maxHeight: 250,
     cursor: "pointer",
     transition: "0.2s",
     "&:hover": {
@@ -35,6 +34,18 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "black",
   },
+  articleImageClass: {
+    height: 250,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+  },
+  articleBottomContainer: {
+    padding: 16,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
 }));
 
 export default function ArticleRow({
@@ -53,14 +64,15 @@ export default function ArticleRow({
     <Grid container item xs={12}>
       <Grid item xs={12} md={4} lg={4} xl={4}>
         <div
-          className={classes.articleImage}
-          style={{
-            height: 250,
-            backgroundImage: `url(${articleImage})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-          }}
+          className={`${classes.articleImage} ${classes.articleImageClass}`}
+          // style={{
+          //   height: 250,
+          //   backgroundImage: `url(${articleImage})`,
+          //   backgroundSize: "cover",
+          //   backgroundRepeat: "no-repeat",
+          //   backgroundPosition: "center",
+          // }}
+          style={{ backgroundImage: `url(${articleImage})` }}
         ></div>
       </Grid>
       <Grid
