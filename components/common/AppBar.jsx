@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     alignItems: "center",
     color: "black",
+    // borderBottom: "solid white",
   },
   toolBarStyles: {
     display: "flex",

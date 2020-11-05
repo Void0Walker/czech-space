@@ -19,6 +19,14 @@ export default function Aktuality({ page, bredCrumbPages }) {
           ARCHIV
         </Typography>
       </Grid>
+      <Grid item xs={12}>
+        <div
+          dangerouslySetInnerHTML={{
+            __html:
+              '<iframe src="https://www.czechspace.cz/cs/archiv" width="100%" height="800" frameborder="no" allowfullscreen="true"></iframe>',
+          }}
+        ></div>
+      </Grid>
     </Grid>
   );
 }

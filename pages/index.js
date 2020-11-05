@@ -1,13 +1,8 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import ProTip from "../components/ProTip";
-import Link from "../components/Link";
-import AppBar from "../components/common/AppBar";
-import Footer from "../components/common/Footer";
 import HomeCarousel from "../components/homepage/HomeCarousel";
-import { Grid } from "@material-ui/core";
+
+import { Grid, Typography } from "@material-ui/core";
+import BootstarpCarousel from "../components/homepage/BootstarpCarousel";
 import ResponsiveCard from "../components/homepage/ResponsiveCard";
 
 const articles = [
@@ -82,14 +77,22 @@ export default function Index() {
     <React.Fragment>
       <Grid
         container
-        style={{ marginTop: 100 }}
+        style={{ marginTop: 10 }}
         spacing={4}
         justify="flex-start"
         wrap="wrap"
       >
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Typography style={{ fontSize: "2rem", fontWeight: 600 }}>
-            HLAVNÍ STRANKA
+            CZECH SPACE OFFICE
+          </Typography>
+        </Grid> */}
+        {/* <Grid item xs={12}>
+          <BootstarpCarousel />
+        </Grid> */}
+        <Grid xs={12}>
+          <Typography style={{ fontSize: "1.5rem", margin: 16 }}>
+            <h1>NEJNOVĚJŠÍ</h1>
           </Typography>
         </Grid>
         {articles.map((e) => (

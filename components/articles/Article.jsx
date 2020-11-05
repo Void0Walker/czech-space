@@ -1,5 +1,13 @@
-import React from "react";
+import React, { memo, useMemo } from "react";
 import { Typography, Grid, makeStyles } from "@material-ui/core";
+import md from "../../utils/mdRenderer";
+
+const PreviewWysiwyg = ({ data }) => {
+  const html = useMemo(() => md.render(data || ""), [data]);
+
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+};
+
 const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: "1.7rem",
@@ -22,36 +30,26 @@ export default function Article({ article, altFloat }) {
         <div
           style={{
             float: altFloat ? "center" : "left",
+            background: "#f8f8fa",
             width: 400,
+            // boxShadow: "10px 20px 18px rgba(41,39,89,.25)",
+            textAlign: "center",
+            marginRight: 16,
+            marginBottom: 16,
           }}
         >
           <img
             alt="odlo_kids"
             style={{
-              width: "95%",
+              width: "100%",
               height: "auto",
             }}
-            src={article.articleImage}
+            src={article.articleImage[0].url}
           ></img>
         </div>
-        {article.articleText.split("\n").map((e, i) => (
-          <Typography
-            key={i}
-            style={{
-              fontSize: "1.1rem",
-              marginBottom: 16,
-              color: "#323232",
-              fontWeight: i === 0 ? 700 : "",
-            }}
-          >
-            {/* Dobře odolává větru a jiným povětrnostním vlivům. Elastický
-              materiál a přiléhavý střih zaručují skvělou volnost pohybu.
-              Zachovává prodyšnost a schopnost odpařovat vlhko */}
-            {e}
-          </Typography>
-        ))}
+        <PreviewWysiwyg data={article.articleDesc}></PreviewWysiwyg>
       </Grid>
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <Typography>Autor</Typography>
         <Typography style={{ fontWeight: 600 }}>
           {article.articleAuthor.name}
@@ -65,7 +63,7 @@ export default function Article({ article, altFloat }) {
         <Typography style={{ fontWeight: 600 }}>
           {article.articleAuthor.email}
         </Typography>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12}>
         {article.articleFiles ? <Typography>Přílohy</Typography> : ""}
         {article.articleFiles

@@ -12,6 +12,8 @@
 /.next/
 /out/
 
+# inspiration folder
+/czech_space-insp
 # production
 /build
 

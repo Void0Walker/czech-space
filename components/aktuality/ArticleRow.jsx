@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     background: "white",
     textDecoration: "none",
     color: "black",
+    "&:hover": {
+      textDecoration: "none",
+      color: "black",
+    },
   },
   articleImageClass: {
     height: 250,
@@ -55,7 +59,9 @@ export default function ArticleRow({
   articleDesc,
   articleTitle,
   articleAuthor,
+  articleSubTitle,
   customColor,
+  articleSubTitlePlain,
   page,
 }) {
   const router = useRouter();
@@ -72,7 +78,7 @@ export default function ArticleRow({
           //   backgroundRepeat: "no-repeat",
           //   backgroundPosition: "center",
           // }}
-          style={{ backgroundImage: `url(${articleImage})` }}
+          style={{ backgroundImage: `url(${articleImage[0].url})` }}
         ></div>
       </Grid>
       <Grid
@@ -102,7 +108,7 @@ export default function ArticleRow({
           </Typography>
         </div>
         <div style={{ padding: 16 }}>
-          <Typography>{articleDesc}</Typography>
+          <Typography>{articleSubTitlePlain}</Typography>
         </div>
         <div
           style={{
