@@ -91,8 +91,10 @@ export default function Index() {
           <BootstarpCarousel />
         </Grid> */}
         <Grid xs={12}>
-          <Typography style={{ fontSize: "1.5rem", margin: 16 }}>
-            <h1>NEJNOVĚJŠÍ</h1>
+          <Typography
+            style={{ fontSize: "2.5rem", margin: 16, fontWeight: 600 }}
+          >
+            NEJNOVĚJŠÍ ČLÁNKY
           </Typography>
         </Grid>
         {articles.map((e) => (
