@@ -1,9 +1,9 @@
 import React from "react";
-import HomeCarousel from "../components/homepage/HomeCarousel";
-
 import { Grid, Typography } from "@material-ui/core";
-import BootstarpCarousel from "../components/homepage/BootstarpCarousel";
 import ResponsiveCard from "../components/homepage/ResponsiveCard";
+
+// import HomeCarousel from "../components/homepage/HomeCarousel";
+// import BootstarpCarousel from "../components/homepage/BootstarpCarousel";
 
 const articles = [
   {
@@ -82,15 +82,7 @@ export default function Index() {
         justify="flex-start"
         wrap="wrap"
       >
-        {/* <Grid item xs={12}>
-          <Typography style={{ fontSize: "2rem", fontWeight: 600 }}>
-            CZECH SPACE OFFICE
-          </Typography>
-        </Grid> */}
-        {/* <Grid item xs={12}>
-          <BootstarpCarousel />
-        </Grid> */}
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <Typography
             style={{ fontSize: "2.5rem", margin: 16, fontWeight: 600 }}
           >
@@ -118,6 +110,6 @@ export async function getServerSideProps(context) {
   const pageTitle = "Hlavní | Czech Space";
   const page = "/";
   return {
-    props: { page, pageTitle }, // will be passed to the page component as props
+    props: { page, pageTitle },
   };
 }
