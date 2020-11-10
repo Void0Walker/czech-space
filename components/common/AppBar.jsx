@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     alignItems: "center",
     color: "black",
-    // borderBottom: "solid white",
   },
   toolBarStyles: {
     display: "flex",
@@ -30,7 +29,18 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 600,
     fontSize: "2rem",
-    // marginRight: "auto",
+  },
+  csoImage: {
+    width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+  csoImageContainer: {
+    marginRight: "10%",
+    [theme.breakpoints.down("md")]: {
+      marginRight: "1%",
+    },
   },
   navigationEntryAktuality: {
     background: "#003F5F",
@@ -70,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navigationArchiv: {
-    // background: "white",
     color: "white",
     background: "#003F5F",
     padding: 12,
@@ -80,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       background: "#f44336",
       color: "white",
-      // borderRight: "white",
     },
   },
   active: {
@@ -100,6 +108,9 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     background: "#005a88",
     color: "white",
+    [theme.breakpoints.down("sm")]: {
+      width: "12%",
+    },
   },
 }));
 
@@ -109,8 +120,8 @@ export default function ButtonAppBar({ page }) {
   return (
     <div className={classes.root}>
       <AppBar elevation={4} className={classes.appBar}>
-        <div style={{ marginRight: "10%" }}>
-          <img src={"/logo.png"} alt="cso"></img>
+        <div className={classes.csoImageContainer}>
+          <img src={"/logo.png"} alt="cso" className={classes.csoImage}></img>
         </div>
         <div
           className={`${classes.navigationEntryAktuality} ${
@@ -137,18 +148,6 @@ export default function ButtonAppBar({ page }) {
           <Typography style={{ fontSize: "0.9rem" }}>AKTUALITY</Typography>
         </div>
         <div
-          className={`${classes.navigationEntryOnas} ${
-            page === "/cs/o-nas" ? classes.active : ""
-          }`}
-          onClick={(event) => {
-            event.preventDefault();
-            Router.push("/cs/o-nas");
-          }}
-        >
-          <InfoIcon></InfoIcon>
-          <Typography style={{ fontSize: "0.9rem" }}>O NÁS</Typography>
-        </div>
-        <div
           className={`${classes.navigationPrilezitosti} ${
             page === "/cs/prilezitosti" ? classes.active : ""
           }`}
@@ -159,6 +158,18 @@ export default function ButtonAppBar({ page }) {
         >
           <FlashOnIcon />
           <Typography style={{ fontSize: "0.9rem" }}>PŘÍLEŽITOSTI</Typography>
+        </div>
+        <div
+          className={`${classes.navigationEntryOnas} ${
+            page === "/cs/o-nas" ? classes.active : ""
+          }`}
+          onClick={(event) => {
+            event.preventDefault();
+            Router.push("/cs/o-nas");
+          }}
+        >
+          <InfoIcon></InfoIcon>
+          <Typography style={{ fontSize: "0.9rem" }}>O NÁS</Typography>
         </div>
         <div
           className={`${classes.navigationArchiv} ${

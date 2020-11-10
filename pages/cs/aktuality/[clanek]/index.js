@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, Typography, Grid, makeStyles } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import BreadCrumbs from "../../../../components/common/BreadCrumbs";
 import Article from "../../../../components/articles/Article";
+import parser from "ua-parser-js";
 
 export default function Clanek({ article, bredCrumbPages }) {
   return (
@@ -21,6 +22,14 @@ export default function Clanek({ article, bredCrumbPages }) {
 }
 
 export async function getServerSideProps(context) {
+  const ua = parser(context.req.headers["user-agent"]);
+  let device = "desktop";
+  if (ua.device) {
+    if (ua.device.type) {
+      device = ua.device.type;
+    }
+  }
+
   let article = await fetch(
     `http://localhost:1337/articles?slug=${context.query.clanek}`
   );
@@ -37,6 +46,6 @@ export async function getServerSideProps(context) {
   };
 
   return {
-    props: { article, bredCrumbPages, pageTitle },
+    props: { article, bredCrumbPages, pageTitle, device },
   };
 }

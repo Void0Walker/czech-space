@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import ResponsiveCard from "../components/homepage/ResponsiveCard";
+import parser from "ua-parser-js";
 
 // import HomeCarousel from "../components/homepage/HomeCarousel";
 // import BootstarpCarousel from "../components/homepage/BootstarpCarousel";
@@ -109,7 +110,15 @@ export default function Index() {
 export async function getServerSideProps(context) {
   const pageTitle = "Hlavní | Czech Space";
   const page = "/";
+  const ua = parser(context.req.headers["user-agent"]);
+
+  let device = "desktop";
+  if (ua.device) {
+    if (ua.device.type) {
+      device = ua.device.type;
+    }
+  }
   return {
-    props: { page, pageTitle },
+    props: { page, pageTitle, device },
   };
 }

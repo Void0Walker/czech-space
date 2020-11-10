@@ -105,7 +105,8 @@ export default function Aktuality({
   );
 }
 
-export async function getServerSideProps({ query: { page = 1 } }) {
+export async function getServerSideProps({ query: { page = 1 }, req }) {
+  const ua = parser(req.headers["user-agent"]);
   const pageTitle = "Aktuality | Czech Space";
   const rootPage = "/cs/aktuality";
   const bredCrumbPages = {
@@ -113,9 +114,16 @@ export async function getServerSideProps({ query: { page = 1 } }) {
     subpagePath: "/cs/aktuality",
   };
 
-  const start = +page === 1 ? 0 : (+page - 1) * 2;
+  let device = "desktop";
+  if (ua.device) {
+    if (ua.device.type) {
+      device = ua.device.type;
+    }
+  }
 
-  console.log(start);
+  console.log({ device });
+
+  const start = +page === 1 ? 0 : (+page - 1) * 2;
 
   let [articleCount, articles] = await Promise.all([
     fetch(`${process.env.API_URL}/articles/count`),
@@ -139,6 +147,7 @@ export async function getServerSideProps({ query: { page = 1 } }) {
       articles,
       articleCount,
       page: +page,
+      device,
     },
   };
 }

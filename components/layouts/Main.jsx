@@ -4,6 +4,7 @@ import { Container, Typography, makeStyles, Button } from "@material-ui/core";
 import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import Footer from "../common/Footer";
 import Router from "next/router";
+import MobileAppBar from "../common/mobile/MobileAppBar";
 
 const useStyles = makeStyles((theme) => ({
   homepageImageContainer: {
@@ -49,10 +50,16 @@ const useStyles = makeStyles((theme) => ({
 export default function Main({ children, ...pageProps }) {
   const classes = useStyles();
 
+  console.log({ pageProps });
+
   return (
     <React.Fragment>
       <div style={{ marginBottom: "150px" }}>
-        <AppBar position="fixed" page={pageProps.page} />
+        {pageProps.device && pageProps.device === "mobile" ? (
+          <MobileAppBar />
+        ) : (
+          <AppBar position="fixed" page={pageProps.page} />
+        )}
         {pageProps.page === "/" ? (
           <div className={classes.homepageImageContainer}>
             <img
