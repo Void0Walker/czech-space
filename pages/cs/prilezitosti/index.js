@@ -24,11 +24,11 @@ const articles = [
   },
 ];
 
-export default function Aktuality({ page, bredCrumbPages }) {
+export default function Aktuality({ page, bredCrumbPages, device }) {
   return (
     <Grid
       container
-      style={{ marginTop: 88 }}
+      style={{ marginTop: device && device === "mobile" ? 60 : 88 }}
       spacing={3}
       justify="flex-start"
       wrap="wrap"

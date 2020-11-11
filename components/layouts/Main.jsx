@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
   homepageImageContainer: {
     width: "100%",
     height: "800px",
+    [theme.breakpoints.down("sm")]: {
+      height: "350px",
+    },
     borderBottom: "4px solid #003F5F",
   },
   homepageImage: {
@@ -20,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
   homepageTextContainer: {
     position: "absolute",
     top: 100,
+    [theme.breakpoints.down("sm")]: {
+      top: "80px",
+    },
     left: 16,
   },
   homepageText: {
@@ -27,15 +33,39 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "120px",
     color: "white",
     opacity: 1,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2.5rem",
+    },
+  },
+  homepageTextMobile: {
+    fontWeight: 600,
+    fontSize: "120px",
+    color: "white",
+    opacity: 1,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2.5rem",
+    },
+  },
+  articlesButtonContainer: {
+    position: "absolute",
+    top: 700,
+    width: "92%",
+    [theme.breakpoints.down("sm")]: {
+      top: 250,
+    },
+    left: 16,
   },
   articlesButton: {
     fontWeight: 600,
     color: "white",
-    fontSize: "2rem",
+    fontSize: "1.5rem",
     align: "left",
     background: "white",
     color: "#003F5F",
-    width: 400,
+    width: 300,
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
     border: "1px solid white",
     borderRadius: 0,
     transition: "0.2s",
@@ -67,14 +97,23 @@ export default function Main({ children, ...pageProps }) {
               alt="Nasa"
               className={classes.homepageImage}
             />
-            <div className={classes.homepageTextContainer}>
-              <Typography className={classes.homepageText}>CZECH</Typography>
-              <Typography className={classes.homepageText}>SPACE</Typography>
-              <Typography className={classes.homepageText}>OFFICE</Typography>
-            </div>
-            <div style={{ position: "absolute", top: 670, left: 16 }}>
+            {pageProps.device && pageProps.device === "mobile" ? (
+              <div className={classes.homepageTextContainer}>
+                <Typography className={classes.homepageTextMobile}>
+                  CZECH SPACE OFFICE
+                </Typography>
+              </div>
+            ) : (
+              <div className={classes.homepageTextContainer}>
+                <Typography className={classes.homepageText}>CZECH</Typography>
+                <Typography className={classes.homepageText}>SPACE</Typography>
+                <Typography className={classes.homepageText}>OFFICE</Typography>
+              </div>
+            )}
+            <div className={classes.articlesButtonContainer}>
               <Button
                 variant="contained"
+                // fullWidth={true}
                 className={classes.articlesButton}
                 endIcon={<TrendingFlatIcon fontSize="inherit" />}
                 onClick={(event) => {
@@ -96,7 +135,7 @@ export default function Main({ children, ...pageProps }) {
           {children}
         </Container>
       </div>
-      <Footer />
+      <Footer pageProps={pageProps} />
     </React.Fragment>
   );
 }

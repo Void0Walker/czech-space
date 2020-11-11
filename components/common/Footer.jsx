@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   footerEmail: {
     marginLeft: 12,
     marginRight: 12,
-    padding: 8,
+    padding: 0,
     alignSelf: "center",
   },
 }));
@@ -59,7 +59,10 @@ const LightTooltip = withStyles((theme) => ({
   },
 }))(Tooltip);
 
-export default function Footer() {
+export default function Footer({ pageProps }) {
+  const device = pageProps.device;
+  console.log({ footer: device });
+
   const classes = useStyles();
   return (
     <div className={classes.footerRoot}>
@@ -70,10 +73,20 @@ export default function Footer() {
           style={{ height: "auto", width: "50%" }}
         ></img>
         <div style={{ marginLeft: 12 }}>
-          <Typography style={{ color: "white", fontSize: "0.9rem" }}>
+          <Typography
+            style={{
+              color: "white",
+              fontSize: device && device === "mobile" ? "0.7rem" : "0.9rem",
+            }}
+          >
             Sokolovská 32/22
           </Typography>
-          <Typography style={{ color: "white", fontSize: "0.9rem" }}>
+          <Typography
+            style={{
+              color: "white",
+              fontSize: device && device === "mobile" ? "0.7rem" : "0.9rem",
+            }}
+          >
             186 00 Praha 8
           </Typography>
           <div style={{ display: "flex", flexDirection: "row" }}>
@@ -106,10 +119,20 @@ export default function Footer() {
         </div>
       </div>
       <div className={classes.footerEmail}>
-        <Typography style={{ color: "white", fontSize: "1 rem" }}>
+        <Typography
+          style={{
+            color: "white",
+            fontSize: device && device === "mobile" ? "0.7rem" : "0.9rem",
+          }}
+        >
           E-mail: info@czech-space.cz
         </Typography>
-        <Typography style={{ color: "white", fontSize: "1 rem" }}>
+        <Typography
+          style={{
+            color: "white",
+            fontSize: device && device === "mobile" ? "0.7rem" : "0.9rem",
+          }}
+        >
           Telefonní číslo: +420 603 319 407
         </Typography>
       </div>

@@ -7,7 +7,7 @@ export default function Clanek({ article, bredCrumbPages }) {
   return (
     <Grid
       container
-      style={{ marginTop: 100 }}
+      style={{ marginTop: device && device === "mobile" ? 72 : 100 }}
       spacing={0}
       justify="flex-start"
       wrap="wrap"

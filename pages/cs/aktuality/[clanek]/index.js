@@ -4,11 +4,11 @@ import BreadCrumbs from "../../../../components/common/BreadCrumbs";
 import Article from "../../../../components/articles/Article";
 import parser from "ua-parser-js";
 
-export default function Clanek({ article, bredCrumbPages }) {
+export default function Clanek({ article, bredCrumbPages, device }) {
   return (
     <Grid
       container
-      style={{ marginTop: 100 }}
+      style={{ marginTop: device && device === "mobile" ? 72 : 100 }}
       spacing={0}
       justify="flex-start"
       wrap="wrap"
@@ -16,7 +16,7 @@ export default function Clanek({ article, bredCrumbPages }) {
       <Grid item xs={12}>
         <BreadCrumbs pages={bredCrumbPages} />
       </Grid>
-      <Article article={article} />
+      <Article article={article} device={device} />
     </Grid>
   );
 }

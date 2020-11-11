@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     transition: "0.2s",
     "&:hover": {
       transform: "scale(1.1)",
+      [theme.breakpoints.down("sm")]: {
+        transform: "scale(1)",
+      },
       boxShadow: "2px 2px 5px grey, -2px -2px 5px grey",
     },
   },
@@ -30,12 +33,16 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     boxShadow: "2px 0px 5px grey, -2px 0px 5px grey",
     borderRight: "8px solid black",
+    [theme.breakpoints.down("sm")]: {
+      borderRight: "0px",
+      borderBottom: "8px solid black",
+    },
     background: "white",
     textDecoration: "none",
     color: "black",
     "&:hover": {
       textDecoration: "none",
-      color: "black",
+      // color: "#1587C0",
     },
   },
   articleImageClass: {
@@ -99,8 +106,8 @@ export default function ArticleRow({
           style={{
             paddingLeft: 16,
             paddingRight: 16,
-            paddingBottom: 16,
-            paddingTop: 0,
+            paddingBottom: 0,
+            paddingTop: 8,
           }}
         >
           <Typography style={{ fontSize: "1.5rem", fontWeight: 600 }}>

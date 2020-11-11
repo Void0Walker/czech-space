@@ -5,7 +5,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 import ArchiveIcon from "@material-ui/icons/Archive";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     padding: 12,
     width: "12%",
+    [theme.breakpoints.down("sm")]: {
+      width: "14%",
+    },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -60,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
     background: "#003F5F",
     padding: 12,
     width: "12%",
+    [theme.breakpoints.down("sm")]: {
+      width: "10%",
+    },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -72,6 +78,9 @@ const useStyles = makeStyles((theme) => ({
     background: "#003F5F",
     padding: 12,
     width: "12%",
+    [theme.breakpoints.down("sm")]: {
+      width: "14%",
+    },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -83,7 +92,10 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     background: "#003F5F",
     padding: 12,
-    width: "12%",
+    width: "13%",
+    // [theme.breakpoints.down("sm")]: {
+    //   width: "10%",
+    // },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -112,10 +124,18 @@ const useStyles = makeStyles((theme) => ({
       width: "12%",
     },
   },
+  navigationText: {
+    fontSize: "0.9rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.7rem",
+    },
+  },
 }));
 
-export default function ButtonAppBar({ page }) {
+export default function ButtonAppBar() {
   const classes = useStyles();
+  let path = useRouter();
+  path = path.pathname;
 
   return (
     <div className={classes.root}>
@@ -125,7 +145,7 @@ export default function ButtonAppBar({ page }) {
         </div>
         <div
           className={`${classes.navigationEntryAktuality} ${
-            page === "/" ? classes.active : ""
+            path === "/" ? classes.active : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -133,11 +153,11 @@ export default function ButtonAppBar({ page }) {
           }}
         >
           <HomeIcon></HomeIcon>
-          <Typography style={{ fontSize: "0.9rem" }}>DOMU</Typography>
+          <Typography className={classes.navigationText}>DOMU</Typography>
         </div>
         <div
           className={`${classes.navigationEntryAktuality} ${
-            page === "/cs/aktuality" ? classes.active : ""
+            path === "/cs/aktuality" ? classes.active : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -145,11 +165,11 @@ export default function ButtonAppBar({ page }) {
           }}
         >
           <LibraryBooksIcon />
-          <Typography style={{ fontSize: "0.9rem" }}>AKTUALITY</Typography>
+          <Typography className={classes.navigationText}>AKTUALITY</Typography>
         </div>
         <div
           className={`${classes.navigationPrilezitosti} ${
-            page === "/cs/prilezitosti" ? classes.active : ""
+            path === "/cs/prilezitosti" ? classes.active : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -157,11 +177,13 @@ export default function ButtonAppBar({ page }) {
           }}
         >
           <FlashOnIcon />
-          <Typography style={{ fontSize: "0.9rem" }}>PŘÍLEŽITOSTI</Typography>
+          <Typography className={classes.navigationText}>
+            PŘÍLEŽITOSTI
+          </Typography>
         </div>
         <div
           className={`${classes.navigationEntryOnas} ${
-            page === "/cs/o-nas" ? classes.active : ""
+            path === "/cs/o-nas" ? classes.active : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -169,11 +191,11 @@ export default function ButtonAppBar({ page }) {
           }}
         >
           <InfoIcon></InfoIcon>
-          <Typography style={{ fontSize: "0.9rem" }}>O NÁS</Typography>
+          <Typography className={classes.navigationText}>O NÁS</Typography>
         </div>
         <div
           className={`${classes.navigationArchiv} ${
-            page === "/cs/archiv" ? classes.active : ""
+            path === "/cs/archiv" ? classes.active : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -181,7 +203,7 @@ export default function ButtonAppBar({ page }) {
           }}
         >
           <ArchiveIcon />
-          <Typography style={{ fontSize: "0.9rem" }}>ARCHIV</Typography>
+          <Typography className={classes.navigationText}>ARCHIV</Typography>
         </div>
         <div className={classes.search}>
           <Typography>Hledání...</Typography>

@@ -5,18 +5,30 @@ import md from "../../utils/mdRenderer";
 const PreviewWysiwyg = ({ data }) => {
   const html = useMemo(() => md.render(data || ""), [data]);
 
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <div dangerouslySetInnerHTML={{ __html: html }} style={{ width: "100%" }} />
+  );
 };
 
 const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: "1.7rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+    },
     fontWeight: 600,
     marginTop: 16,
   },
+  articleImage: {
+    width: "400px",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    height: "auto",
+  },
 }));
 
-export default function Article({ article, altFloat }) {
+export default function Article({ article, altFloat, device }) {
   const classes = useStyles();
   return (
     <div>
@@ -31,19 +43,15 @@ export default function Article({ article, altFloat }) {
           style={{
             float: altFloat ? "center" : "left",
             background: "#f8f8fa",
-            width: 400,
-            // boxShadow: "10px 20px 18px rgba(41,39,89,.25)",
+            width: device && device === "mobile" ? "100%" : "",
             textAlign: "center",
             marginRight: 16,
             marginBottom: 16,
           }}
         >
           <img
-            alt="odlo_kids"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
+            alt={article.articleTitle}
+            className={classes.articleImage}
             src={article.articleImage[0].url}
           ></img>
         </div>

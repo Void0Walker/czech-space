@@ -131,17 +131,41 @@ export default function MobileList({ toggleDrawer, navigationPages }) {
             }}
           />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon style={{ color: "black" }}>
+        <ListItem button onClick={toggleDrawer("top", false, "/cs/o-nas")}>
+          <ListItemIcon
+            style={{
+              color: path && path === "/cs/o-nas" ? "#f44336" : "black",
+            }}
+          >
             <InfoIcon />
           </ListItemIcon>
-          <ListItemText primary="O NÁS" />
+          <ListItemText
+            primary="O NÁS"
+            primaryTypographyProps={{
+              style: {
+                fontWeight: path && path === "/cs/o-nas" ? 700 : 500,
+                color: path && path === "/cs/o-nas" ? "#f44336" : "",
+              },
+            }}
+          />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon style={{ color: "black" }}>
+        <ListItem button onClick={toggleDrawer("top", false, "/cs/archiv")}>
+          <ListItemIcon
+            style={{
+              color: path && path === "/cs/archiv" ? "#f44336" : "black",
+            }}
+          >
             <ArchiveIcon />
           </ListItemIcon>
-          <ListItemText primary="ARCHIV" />
+          <ListItemText
+            primary="ARCHIV"
+            primaryTypographyProps={{
+              style: {
+                fontWeight: path && path === "/cs/archiv" ? 700 : 500,
+                color: path && path === "/cs/archiv" ? "#f44336" : "",
+              },
+            }}
+          />
         </ListItem>
       </List>
     </div>

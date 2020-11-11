@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import BreadCrumbs from "../../../components/common/BreadCrumbs";
+import parser from "ua-parser-js";
 
 export default function Aktuality({ page, bredCrumbPages }) {
   return (
@@ -33,6 +34,13 @@ export default function Aktuality({ page, bredCrumbPages }) {
 
 export async function getServerSideProps(context) {
   const pageTitle = "Archiv | Czech Space";
+  const ua = parser(context.req.headers["user-agent"]);
+  let device = "desktop";
+  if (ua.device) {
+    if (ua.device.type) {
+      device = ua.device.type;
+    }
+  }
 
   const page = "/cs/archiv";
   const bredCrumbPages = {
@@ -41,6 +49,6 @@ export async function getServerSideProps(context) {
   };
 
   return {
-    props: { page, pageTitle, bredCrumbPages }, // will be passed to the page component as props
+    props: { page, pageTitle, bredCrumbPages, device },
   };
 }

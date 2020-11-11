@@ -1,8 +1,18 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, makeStyles } from "@material-ui/core";
 import ResponsiveCard from "../components/homepage/ResponsiveCard";
 import parser from "ua-parser-js";
 
+const useStyles = makeStyles((theme) => ({
+  title: {
+    fontSize: "2.5rem",
+    margin: 16,
+    fontWeight: 600,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2rem",
+    },
+  },
+}));
 // import HomeCarousel from "../components/homepage/HomeCarousel";
 // import BootstarpCarousel from "../components/homepage/BootstarpCarousel";
 
@@ -74,6 +84,7 @@ const colorMap = {
   "vox-populi": "#F05A28",
 };
 export default function Index() {
+  const classes = useStyles();
   return (
     <React.Fragment>
       <Grid
@@ -84,11 +95,7 @@ export default function Index() {
         wrap="wrap"
       >
         <Grid item xs={12}>
-          <Typography
-            style={{ fontSize: "2.5rem", margin: 16, fontWeight: 600 }}
-          >
-            NEJNOVĚJŠÍ ČLÁNKY
-          </Typography>
+          <Typography className={classes.title}>NEJNOVĚJŠÍ ČLÁNKY</Typography>
         </Grid>
         {articles.map((e) => (
           <Grid item xs={12} lg={3} xl={3} key={e.id}>

@@ -20,7 +20,7 @@ export default function PaginationCSO({ totalPages }) {
       showFirstButton
       showLastButton
       color="secondary"
-      shape="rounded"
+      // shape="square"
       page={parseInt(getAsString(query.page) || "1")}
       count={totalPages}
       renderItem={(item) => (

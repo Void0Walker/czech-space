@@ -72,6 +72,7 @@ export default function Aktuality({
   articles,
   articleCount,
   page,
+  device,
 }) {
   const router = useRouter();
   console.log(articleCount);
@@ -81,7 +82,7 @@ export default function Aktuality({
   return (
     <Grid
       container
-      style={{ marginTop: 88 }}
+      style={{ marginTop: device && device === "mobile" ? 60 : 88 }}
       spacing={3}
       justify="flex-start"
       wrap="wrap"
@@ -97,7 +98,7 @@ export default function Aktuality({
           page={rootPage}
         />
       ))}
-      <Grid item xs={12}>
+      <Grid container item xs={12} justify="center">
         <br />
         <Pagination totalPages={lastPage} pathname={rootPage}></Pagination>
       </Grid>
