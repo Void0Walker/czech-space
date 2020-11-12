@@ -1,6 +1,12 @@
 import React from "react";
 import AppBar from "../common/AppBar";
-import { Container, Typography, makeStyles, Button } from "@material-ui/core";
+import {
+  Container,
+  Typography,
+  makeStyles,
+  Button,
+  Grid,
+} from "@material-ui/core";
 import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import Footer from "../common/Footer";
 import Router from "next/router";
@@ -84,7 +90,7 @@ export default function Main({ children, ...pageProps }) {
 
   return (
     <React.Fragment>
-      <div style={{ marginBottom: "150px" }}>
+      <div style={{ marginBottom: "150px", width: "100%" }}>
         {pageProps.device && pageProps.device === "mobile" ? (
           <MobileAppBar />
         ) : (
@@ -128,12 +134,16 @@ export default function Main({ children, ...pageProps }) {
         ) : (
           ""
         )}
-        <Container
-          maxWidth={"lg"}
-          style={{ display: "flex", alignContent: "center" }}
-        >
-          {children}
-        </Container>
+        {pageProps.page === "/cs/o-nas" ? (
+          <Grid container>{children}</Grid>
+        ) : (
+          <Container
+            maxWidth={"lg"}
+            style={{ display: "flex", alignContent: "center" }}
+          >
+            {children}
+          </Container>
+        )}
       </div>
       <Footer pageProps={pageProps} />
     </React.Fragment>

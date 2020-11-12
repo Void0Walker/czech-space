@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: 0,
     cursor: "pointer",
-    background: "#005a88",
+    background: "#1D6B87",
     color: "white",
     [theme.breakpoints.down("sm")]: {
       width: "12%",

@@ -1,14 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { Typography, Grid, makeStyles } from "@material-ui/core";
-import md from "../../utils/mdRenderer";
-
-const PreviewWysiwyg = ({ data }) => {
-  const html = useMemo(() => md.render(data || ""), [data]);
-
-  return (
-    <div dangerouslySetInnerHTML={{ __html: html }} style={{ width: "100%" }} />
-  );
-};
+import PreviewWysiwyg from "./WysiWyg";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -30,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Article({ article, altFloat, device }) {
   const classes = useStyles();
+  console.log({ article });
   return (
     <div>
       <Grid item xs={12}>
