@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react";
+import React from "react";
 import { Typography, Grid, makeStyles } from "@material-ui/core";
 import PreviewWysiwyg from "./WysiWyg";
 
@@ -50,21 +50,6 @@ export default function Article({ article, altFloat, device }) {
         </div>
         <PreviewWysiwyg data={article.articleDesc}></PreviewWysiwyg>
       </Grid>
-      {/* <Grid item xs={12}>
-        <Typography>Autor</Typography>
-        <Typography style={{ fontWeight: 600 }}>
-          {article.articleAuthor.name}
-        </Typography>
-        <Typography style={{ fontWeight: 600 }}>
-          {article.articleAuthor.position}
-        </Typography>
-        <Typography style={{ fontWeight: 600 }}>
-          {article.articleAuthor.phone}
-        </Typography>
-        <Typography style={{ fontWeight: 600 }}>
-          {article.articleAuthor.email}
-        </Typography>
-      </Grid> */}
       <Grid item xs={12}>
         {article.articleFiles ? <Typography>Přílohy</Typography> : ""}
         {article.articleFiles
