@@ -1,18 +1,11 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import { Container } from "@material-ui/core";
+import { makeStyles, AppBar, Typography } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from "@material-ui/icons/Info";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 import ArchiveIcon from "@material-ui/icons/Archive";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,13 +29,27 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 600,
     fontSize: "2rem",
-    // marginRight: "auto",
+  },
+  csoImage: {
+    width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+  csoImageContainer: {
+    marginRight: "10%",
+    [theme.breakpoints.down("md")]: {
+      marginRight: "1%",
+    },
   },
   navigationEntryAktuality: {
     background: "#003F5F",
     color: "white",
     padding: 12,
     width: "12%",
+    [theme.breakpoints.down("sm")]: {
+      width: "14%",
+    },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -56,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
     background: "#003F5F",
     padding: 12,
     width: "12%",
+    [theme.breakpoints.down("sm")]: {
+      width: "10%",
+    },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -68,6 +78,9 @@ const useStyles = makeStyles((theme) => ({
     background: "#003F5F",
     padding: 12,
     width: "12%",
+    [theme.breakpoints.down("sm")]: {
+      width: "14%",
+    },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -76,17 +89,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navigationArchiv: {
-    // background: "white",
     color: "white",
     background: "#003F5F",
     padding: 12,
-    width: "12%",
+    width: "13%",
+    // [theme.breakpoints.down("sm")]: {
+    //   width: "10%",
+    // },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
       background: "#f44336",
       color: "white",
-      // borderRight: "white",
     },
   },
   active: {
@@ -104,23 +118,34 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: 0,
     cursor: "pointer",
-    background: "#005a88",
+    background: "#1D6B87",
     color: "white",
+    [theme.breakpoints.down("sm")]: {
+      width: "12%",
+    },
+  },
+  navigationText: {
+    fontSize: "0.9rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.7rem",
+    },
   },
 }));
 
-export default function ButtonAppBar({ page }) {
+export default function ButtonAppBar() {
   const classes = useStyles();
+  let path = useRouter();
+  path = path.pathname;
 
   return (
     <div className={classes.root}>
       <AppBar elevation={4} className={classes.appBar}>
-        <div style={{ marginRight: "10%" }}>
-          <img src={"/logo.png"} alt="cso"></img>
+        <div className={classes.csoImageContainer}>
+          <img src={"/logo.png"} alt="cso" className={classes.csoImage}></img>
         </div>
         <div
           className={`${classes.navigationEntryAktuality} ${
-            page === "/" ? classes.active : ""
+            path === "/" ? classes.active : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -128,11 +153,11 @@ export default function ButtonAppBar({ page }) {
           }}
         >
           <HomeIcon></HomeIcon>
-          <Typography style={{ fontSize: "0.9rem" }}>DOMU</Typography>
+          <Typography className={classes.navigationText}>DOMU</Typography>
         </div>
         <div
           className={`${classes.navigationEntryAktuality} ${
-            page === "/cs/aktuality" ? classes.active : ""
+            path === "/cs/aktuality" ? classes.active : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -140,23 +165,11 @@ export default function ButtonAppBar({ page }) {
           }}
         >
           <LibraryBooksIcon />
-          <Typography style={{ fontSize: "0.9rem" }}>AKTUALITY</Typography>
-        </div>
-        <div
-          className={`${classes.navigationEntryOnas} ${
-            page === "/cs/o-nas" ? classes.active : ""
-          }`}
-          onClick={(event) => {
-            event.preventDefault();
-            Router.push("/cs/o-nas");
-          }}
-        >
-          <InfoIcon></InfoIcon>
-          <Typography style={{ fontSize: "0.9rem" }}>O NÁS</Typography>
+          <Typography className={classes.navigationText}>AKTUALITY</Typography>
         </div>
         <div
           className={`${classes.navigationPrilezitosti} ${
-            page === "/cs/prilezitosti" ? classes.active : ""
+            path === "/cs/prilezitosti" ? classes.active : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -164,11 +177,25 @@ export default function ButtonAppBar({ page }) {
           }}
         >
           <FlashOnIcon />
-          <Typography style={{ fontSize: "0.9rem" }}>PŘÍLEŽITOSTI</Typography>
+          <Typography className={classes.navigationText}>
+            PŘÍLEŽITOSTI
+          </Typography>
+        </div>
+        <div
+          className={`${classes.navigationEntryOnas} ${
+            path === "/cs/o-nas" ? classes.active : ""
+          }`}
+          onClick={(event) => {
+            event.preventDefault();
+            Router.push("/cs/o-nas");
+          }}
+        >
+          <InfoIcon></InfoIcon>
+          <Typography className={classes.navigationText}>O NÁS</Typography>
         </div>
         <div
           className={`${classes.navigationArchiv} ${
-            page === "/cs/archiv" ? classes.active : ""
+            path === "/cs/archiv" ? classes.active : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -176,7 +203,7 @@ export default function ButtonAppBar({ page }) {
           }}
         >
           <ArchiveIcon />
-          <Typography style={{ fontSize: "0.9rem" }}>ARCHIV</Typography>
+          <Typography className={classes.navigationText}>ARCHIV</Typography>
         </div>
         <div className={classes.search}>
           <Typography>Hledání...</Typography>

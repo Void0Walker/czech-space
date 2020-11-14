@@ -1,14 +1,20 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import ProTip from "../components/ProTip";
-import Link from "../components/Link";
-import AppBar from "../components/common/AppBar";
-import Footer from "../components/common/Footer";
-import HomeCarousel from "../components/homepage/HomeCarousel";
-import { Grid } from "@material-ui/core";
-import ResponsiveCard from "../components/homepage/ResponsiveCard";
+import { Grid, Typography, makeStyles } from "@material-ui/core";
+import ResponsiveCard from "../components/common/ResponsiveCard";
+import parser from "ua-parser-js";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    fontSize: "2.5rem",
+    margin: 16,
+    fontWeight: 600,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "2rem",
+    },
+  },
+}));
+// import HomeCarousel from "../components/homepage/HomeCarousel";
+// import BootstarpCarousel from "../components/homepage/BootstarpCarousel";
 
 const articles = [
   {
@@ -78,19 +84,18 @@ const colorMap = {
   "vox-populi": "#F05A28",
 };
 export default function Index() {
+  const classes = useStyles();
   return (
     <React.Fragment>
       <Grid
         container
-        style={{ marginTop: 100 }}
+        style={{ marginTop: 10 }}
         spacing={4}
         justify="flex-start"
         wrap="wrap"
       >
         <Grid item xs={12}>
-          <Typography style={{ fontSize: "2rem", fontWeight: 600 }}>
-            HLAVNÍ STRANKA
-          </Typography>
+          <Typography className={classes.title}>NEJNOVĚJŠÍ ČLÁNKY</Typography>
         </Grid>
         {articles.map((e) => (
           <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={e.id}>
@@ -112,7 +117,15 @@ export default function Index() {
 export async function getServerSideProps(context) {
   const pageTitle = "Hlavní | Czech Space";
   const page = "/";
+  const ua = parser(context.req.headers["user-agent"]);
+
+  let device = "desktop";
+  if (ua.device) {
+    if (ua.device.type) {
+      device = ua.device.type;
+    }
+  }
   return {
-    props: { page, pageTitle }, // will be passed to the page component as props
+    props: { page, pageTitle, device },
   };
 }

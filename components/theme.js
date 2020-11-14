@@ -17,11 +17,18 @@ const theme = createMuiTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
+    // fontSize: "1.1rem",
+    color: "#FFFFFF",
   },
   palette: {
     primary: {
       main: "#5F5F5F",
+
+      // main: "#EEF0F1",
     },
+    // text: {
+    //   primary: "#FFFFFF",
+    // },
     secondary: {
       main: "#1587C0",
     },

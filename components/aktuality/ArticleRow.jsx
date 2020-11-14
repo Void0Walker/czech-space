@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Typography,
-  Grid,
-  makeStyles,
-  Button,
-} from "@material-ui/core";
+import { Typography, Grid, makeStyles, Button } from "@material-ui/core";
 import Link from "../Link";
 import { useRouter } from "next/router";
 import n from "normalize-strings";
@@ -16,7 +10,10 @@ const useStyles = makeStyles((theme) => ({
     transition: "0.2s",
     "&:hover": {
       transform: "scale(1.1)",
-      boxShadow: "2px 2px 5px grey, -2px -2px 5px grey",
+      [theme.breakpoints.down("sm")]: {
+        transform: "scale(1)",
+      },
+      boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
     },
   },
   articleImage: {
@@ -28,11 +25,31 @@ const useStyles = makeStyles((theme) => ({
   },
   cardDescription: {
     cursor: "pointer",
-    boxShadow: "2px 0px 5px grey, -2px 0px 5px grey",
+    boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
     borderRight: "8px solid black",
+    [theme.breakpoints.down("sm")]: {
+      borderRight: "0px",
+      borderBottom: "8px solid black",
+    },
     background: "white",
     textDecoration: "none",
     color: "black",
+    "&:hover": {
+      textDecoration: "none",
+      // color: "#1587C0",
+    },
+  },
+  articleImageClass: {
+    height: 250,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+  },
+  articleBottomContainer: {
+    padding: 16,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   articleImageClass: {
     height: 250,
@@ -55,7 +72,9 @@ export default function ArticleRow({
   articleDesc,
   articleTitle,
   articleAuthor,
+  articleSubTitle,
   customColor,
+  articleSubTitlePlain,
   page,
 }) {
   const router = useRouter();
@@ -65,14 +84,7 @@ export default function ArticleRow({
       <Grid item xs={12} md={4} lg={4} xl={4}>
         <div
           className={`${classes.articleImage} ${classes.articleImageClass}`}
-          // style={{
-          //   height: 250,
-          //   backgroundImage: `url(${articleImage})`,
-          //   backgroundSize: "cover",
-          //   backgroundRepeat: "no-repeat",
-          //   backgroundPosition: "center",
-          // }}
-          style={{ backgroundImage: `url(${articleImage})` }}
+          style={{ backgroundImage: `url(${articleImage[0].url})` }}
         ></div>
       </Grid>
       <Grid
@@ -93,16 +105,34 @@ export default function ArticleRow({
           style={{
             paddingLeft: 16,
             paddingRight: 16,
-            paddingBottom: 16,
-            paddingTop: 0,
+            paddingBottom: 0,
+            paddingTop: 8,
           }}
         >
-          <Typography style={{ fontSize: "1.5rem", fontWeight: 600 }}>
+          <Typography
+            style={{
+              fontSize: "1.5rem",
+              fontWeight: 600,
+              overflow: "hidden",
+              overflow: "hidden",
+              maxWidth: "200ch",
+              textOverflow: "elipsis",
+            }}
+          >
             {articleTitle}
           </Typography>
         </div>
         <div style={{ padding: 16 }}>
-          <Typography>{articleDesc}</Typography>
+          <Typography
+            style={{
+              // whiteSpace: "nowrap",
+              overflow: "hidden",
+              maxWidth: "200ch",
+              textOverflow: "elipsis",
+            }}
+          >
+            {articleSubTitlePlain}
+          </Typography>
         </div>
         <div
           style={{

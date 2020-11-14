@@ -1,15 +1,28 @@
 import React from "react";
 import { Typography, Grid, makeStyles } from "@material-ui/core";
+import PreviewWysiwyg from "./WysiWyg";
+
 const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: "1.7rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+    },
     fontWeight: 600,
     marginTop: 16,
   },
+  articleImage: {
+    width: "400px",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    height: "auto",
+  },
 }));
 
-export default function Article({ article, altFloat }) {
+export default function Article({ article, altFloat, device }) {
   const classes = useStyles();
+  // console.log({ article });
   return (
     <div>
       <Grid item xs={12}>
@@ -22,49 +35,20 @@ export default function Article({ article, altFloat }) {
         <div
           style={{
             float: altFloat ? "center" : "left",
-            width: 400,
+            background: "#f8f8fa",
+            width: device && device === "mobile" ? "100%" : "",
+            textAlign: "center",
+            marginRight: 16,
+            marginBottom: 16,
           }}
         >
           <img
-            alt="odlo_kids"
-            style={{
-              width: "95%",
-              height: "auto",
-            }}
-            src={article.articleImage}
+            alt={article.articleTitle}
+            className={classes.articleImage}
+            src={article.articleImage[0].url}
           ></img>
         </div>
-        {article.articleText.split("\n").map((e, i) => (
-          <Typography
-            key={i}
-            style={{
-              fontSize: "1.1rem",
-              marginBottom: 16,
-              color: "#323232",
-              fontWeight: i === 0 ? 700 : "",
-            }}
-          >
-            {/* Dobře odolává větru a jiným povětrnostním vlivům. Elastický
-              materiál a přiléhavý střih zaručují skvělou volnost pohybu.
-              Zachovává prodyšnost a schopnost odpařovat vlhko */}
-            {e}
-          </Typography>
-        ))}
-      </Grid>
-      <Grid item xs={12}>
-        <Typography>Autor</Typography>
-        <Typography style={{ fontWeight: 600 }}>
-          {article.articleAuthor.name}
-        </Typography>
-        <Typography style={{ fontWeight: 600 }}>
-          {article.articleAuthor.position}
-        </Typography>
-        <Typography style={{ fontWeight: 600 }}>
-          {article.articleAuthor.phone}
-        </Typography>
-        <Typography style={{ fontWeight: 600 }}>
-          {article.articleAuthor.email}
-        </Typography>
+        <PreviewWysiwyg data={article.articleDescription}></PreviewWysiwyg>
       </Grid>
       <Grid item xs={12}>
         {article.articleFiles ? <Typography>Přílohy</Typography> : ""}
