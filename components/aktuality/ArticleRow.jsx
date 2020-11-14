@@ -51,6 +51,18 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  articleImageClass: {
+    height: 250,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+  },
+  articleBottomContainer: {
+    padding: 16,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
 }));
 
 export default function ArticleRow({
