@@ -85,6 +85,7 @@ export default function Aktuality({
 }
 
 export async function getServerSideProps(context) {
+  const apiUrl = process.env.API_URL;
   const ua = parser(context.req.headers["user-agent"]);
   let device = "desktop";
   let pageContent = await fetch(`${process.env.API_URL}/o-nas`);
@@ -103,6 +104,6 @@ export async function getServerSideProps(context) {
   };
 
   return {
-    props: { page, pageTitle, bredCrumbPages, device, pageContent },
+    props: { page, pageTitle, bredCrumbPages, device, pageContent, apiUrl },
   };
 }

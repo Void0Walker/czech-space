@@ -4,7 +4,7 @@ import BreadCrumbs from "../../../../components/common/BreadCrumbs";
 import Article from "../../../../components/articles/Article";
 import parser from "ua-parser-js";
 
-export default function Clanek({ article, bredCrumbPages }) {
+export default function Clanek({ article, bredCrumbPages, device }) {
   return (
     <Grid
       container
@@ -16,29 +16,38 @@ export default function Clanek({ article, bredCrumbPages }) {
       <Grid item xs={12}>
         <BreadCrumbs pages={bredCrumbPages} />
       </Grid>
-      <Article
-        article={article}
-        altFloat={article.articleAltFloat ? true : false}
-      />
+      <Article article={article} device={device} />
     </Grid>
   );
 }
 
 export async function getServerSideProps(context) {
-  let article = articles.filter(
-    (e) => e.articleUrl === context.query.clanek
-  )[0];
+  const apiUrl = process.env.API_URL;
+  const ua = parser(context.req.headers["user-agent"]);
+  let device = "desktop";
+  if (ua.device) {
+    if (ua.device.type) {
+      device = ua.device.type;
+    }
+  }
+
+  let article = await fetch(`${apiUrl}/articles?slug=${context.query.clanek}`);
+  article = await article.json();
+
+  console.log({ here: article });
+
+  Array.isArray(article) ? (article = article[0]) : (article = article);
 
   const pageTitle = `${article.articleTitle} | Czech Space`;
 
   const bredCrumbPages = {
     name: article.articleTitle,
-    friendlyURL: article.articleUrl,
-    subpageName: "O nás",
-    subpagePath: "/cs/o-nas",
+    friendlyURL: article.slug,
+    subpageName: "Příležitosti",
+    subpagePath: "/cs/prilezitosti",
   };
 
   return {
-    props: { article, bredCrumbPages, pageTitle }, // will be passed to the page component as props
+    props: { article, bredCrumbPages, pageTitle, device, apiUrl },
   };
 }

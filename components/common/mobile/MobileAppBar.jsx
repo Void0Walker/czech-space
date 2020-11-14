@@ -2,12 +2,8 @@ import React from "react";
 import { makeStyles, AppBar, Toolbar, IconButton } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import SearchIcon from "@material-ui/icons/Search";
-import Link from "../../Link";
 import MobileDrawer from "./MobileDrawer";
-import MobileList from "./MobileList";
-import Router from "next/router";
-
-// import SearchAutoComplete from "../SearchAutocomplete";
+import SearchAutoComplete from "../SearchAutocomplete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,7 +58,7 @@ export default function MobileAppBar({ apiUrl, layers, auth }) {
             <div>
               <IconButton
                 aria-label="search"
-                style={{ color: "white" }}
+                style={{ color: "white", fontSize: "1rem" }}
                 onClick={handleOpenDropDown}
               >
                 {dropDown ? <ArrowDropDownIcon /> : <SearchIcon />}
@@ -71,13 +67,13 @@ export default function MobileAppBar({ apiUrl, layers, auth }) {
             <MobileDrawer navigationPages={navigationPages} />
           </div>
         </Toolbar>
-        {/* {dropDown ? (
+        {dropDown ? (
           <Toolbar>
             <SearchAutoComplete apiUrl={apiUrl} fullWidth={true} />
           </Toolbar>
         ) : (
           ""
-        )} */}
+        )}
       </AppBar>
     </div>
   );

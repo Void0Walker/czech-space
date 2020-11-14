@@ -13,8 +13,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-// import HomeCarousel from "../components/homepage/HomeCarousel";
-// import BootstarpCarousel from "../components/homepage/BootstarpCarousel";
 
 const articles = [
   {
@@ -118,6 +116,9 @@ export async function getServerSideProps(context) {
   const pageTitle = "Hlavní | Czech Space";
   const page = "/";
   const ua = parser(context.req.headers["user-agent"]);
+  const apiUrl = process.env.API_URL;
+  let pageContent = await fetch(`${process.env.API_URL}/home-page`);
+  pageContent = await pageContent.json();
 
   let device = "desktop";
   if (ua.device) {
@@ -126,6 +127,6 @@ export async function getServerSideProps(context) {
     }
   }
   return {
-    props: { page, pageTitle, device },
+    props: { page, pageTitle, device, apiUrl, pageContent },
   };
 }

@@ -45,6 +45,6 @@ export async function getServerSideProps(context) {
   };
 
   return {
-    props: { article, bredCrumbPages, pageTitle, device },
+    props: { article, bredCrumbPages, pageTitle, device, apiUrl },
   };
 }

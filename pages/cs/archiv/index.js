@@ -34,6 +34,7 @@ export default function Aktuality({ page, bredCrumbPages }) {
 
 export async function getServerSideProps(context) {
   const pageTitle = "Archiv | Czech Space";
+  const apiUrl = process.env.API_URL;
   const ua = parser(context.req.headers["user-agent"]);
   let device = "desktop";
   if (ua.device) {
@@ -49,6 +50,6 @@ export async function getServerSideProps(context) {
   };
 
   return {
-    props: { page, pageTitle, bredCrumbPages, device },
+    props: { page, pageTitle, bredCrumbPages, device, apiUrl },
   };
 }

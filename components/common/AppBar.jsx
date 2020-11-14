@@ -6,6 +6,7 @@ import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 import ArchiveIcon from "@material-ui/icons/Archive";
 import Router, { useRouter } from "next/router";
+import SearchAutocomplete from "../../components/common/SearchAutocomplete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -112,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   search: {
-    padding: 24,
+    padding: 8,
     width: "25%",
     textAlign: "left",
     marginLeft: "auto",
@@ -132,7 +133,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ apiUrl }) {
   const classes = useStyles();
   let path = useRouter();
   path = path.pathname;
@@ -206,7 +207,7 @@ export default function ButtonAppBar() {
           <Typography className={classes.navigationText}>ARCHIV</Typography>
         </div>
         <div className={classes.search}>
-          <Typography>Hledání...</Typography>
+          <SearchAutocomplete apiUrl={apiUrl}></SearchAutocomplete>
         </div>
       </AppBar>
     </div>

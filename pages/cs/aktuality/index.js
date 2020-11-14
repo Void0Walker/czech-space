@@ -55,6 +55,7 @@ export default function Aktuality({
 export async function getServerSideProps({ query: { page = 1 }, req }) {
   const ua = parser(req.headers["user-agent"]);
   const pageTitle = "Aktuality | Czech Space";
+  const apiUrl = process.env.API_URL;
   const rootPage = "/cs/aktuality";
   const bredCrumbPages = {
     subpageName: "Aktuality",
@@ -98,6 +99,7 @@ export async function getServerSideProps({ query: { page = 1 }, req }) {
       articleCount,
       page: +page,
       device,
+      apiUrl,
     },
   };
 }

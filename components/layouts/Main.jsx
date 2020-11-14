@@ -15,7 +15,7 @@ import MobileAppBar from "../common/mobile/MobileAppBar";
 const useStyles = makeStyles((theme) => ({
   homepageImageContainer: {
     width: "100%",
-    height: "800px",
+    height: "700px",
     [theme.breakpoints.down("sm")]: {
       height: "350px",
     },
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   homepageText: {
     fontWeight: 600,
-    fontSize: "120px",
+    fontSize: "100px",
     color: "white",
     opacity: 1,
     [theme.breakpoints.down("sm")]: {
@@ -54,10 +54,10 @@ const useStyles = makeStyles((theme) => ({
   },
   articlesButtonContainer: {
     position: "absolute",
-    top: 700,
+    top: 620,
     width: "92%",
     [theme.breakpoints.down("sm")]: {
-      top: 250,
+      top: 270,
     },
     left: 16,
   },
@@ -85,35 +85,49 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Main({ children, ...pageProps }) {
   const classes = useStyles();
-
-  // console.log({ pageProps });
-
+  console.log({ pageProps });
   return (
     <React.Fragment>
       <div style={{ marginBottom: "150px", width: "100%" }}>
         {pageProps.device && pageProps.device === "mobile" ? (
-          <MobileAppBar />
+          <MobileAppBar apiUrl={pageProps.apiUrl} />
         ) : (
-          <AppBar position="fixed" page={pageProps.page} />
+          <AppBar
+            position="fixed"
+            page={pageProps.page}
+            apiUrl={pageProps.apiUrl}
+          />
         )}
         {pageProps.page === "/" ? (
           <div className={classes.homepageImageContainer}>
             <img
-              src="/homepage/heic2007a.jpg"
+              src={
+                pageProps.pageContent.Image
+                  ? pageProps.pageContent.Image[0].url
+                  : "/homepage/heic2007a.jpg"
+              }
               alt="Nasa"
               className={classes.homepageImage}
             />
             {pageProps.device && pageProps.device === "mobile" ? (
               <div className={classes.homepageTextContainer}>
                 <Typography className={classes.homepageTextMobile}>
-                  CZECH SPACE OFFICE
+                  {pageProps.pageContent.Title}
                 </Typography>
               </div>
             ) : (
               <div className={classes.homepageTextContainer}>
-                <Typography className={classes.homepageText}>CZECH</Typography>
+                {/* <Typography className={classes.homepageText}>CZECH</Typography>
                 <Typography className={classes.homepageText}>SPACE</Typography>
-                <Typography className={classes.homepageText}>OFFICE</Typography>
+                <Typography className={classes.homepageText}>OFFICE</Typography> */}
+
+                {pageProps.pageContent.Title.replace(/\s/gi, "\n")
+                  .split("\n")
+                  .map((i) => (
+                    <Typography key={i} className={classes.homepageText}>
+                      {i}
+                    </Typography>
+                  ))}
               </div>
             )}
             <div className={classes.articlesButtonContainer}>
