@@ -10,6 +10,18 @@ const useStyles = makeStyles((theme) => ({
     background: "white",
     minHeight: "30vh",
   },
+  aboutTitle: {
+    textAlign: "center",
+    marginTop: 145,
+    width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 60,
+    },
+    color: "#045A88",
+    // padding: 16,
+    fontWeight: 600,
+    fontSize: "2.5rem",
+  },
   aboutParagraph: {
     background: "#045A88",
     // background: "#1D6B87",
@@ -19,7 +31,12 @@ const useStyles = makeStyles((theme) => ({
     background: "white",
   },
 }));
-export default function Aktuality({ page, bredCrumbPages, pageContent }) {
+export default function Aktuality({
+  page,
+  bredCrumbPages,
+  pageContent,
+  device,
+}) {
   const classes = useStyles();
   return (
     <Grid
@@ -33,16 +50,7 @@ export default function Aktuality({ page, bredCrumbPages, pageContent }) {
         <BreadCrumbs pages={bredCrumbPages} />
       </Grid> */}
       <Grid item xs={12} className={classes.aboutContainer}>
-        <Typography
-          style={{
-            textAlign: "center",
-            marginTop: 135,
-            color: "#045A88",
-            // padding: 16,
-            fontWeight: 600,
-            fontSize: "2.5rem",
-          }}
-        >
+        <Typography className={classes.aboutTitle}>
           {pageContent.title}
         </Typography>
       </Grid>

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Article({ article, altFloat, device }) {
   const classes = useStyles();
-  console.log({ article });
+  // console.log({ article });
   return (
     <div>
       <Grid item xs={12}>
@@ -48,7 +48,7 @@ export default function Article({ article, altFloat, device }) {
             src={article.articleImage[0].url}
           ></img>
         </div>
-        <PreviewWysiwyg data={article.articleDesc}></PreviewWysiwyg>
+        <PreviewWysiwyg data={article.articleDescription}></PreviewWysiwyg>
       </Grid>
       <Grid item xs={12}>
         {article.articleFiles ? <Typography>Přílohy</Typography> : ""}

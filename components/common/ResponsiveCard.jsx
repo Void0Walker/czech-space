@@ -29,6 +29,7 @@ export default function ResponsiveCard({
   title,
   shortDesc,
   articleUrl,
+  oppurtunitiesCard,
 }) {
   const classes = useStyles();
 
@@ -51,19 +52,11 @@ export default function ResponsiveCard({
             <Typography gutterBottom variant="h5" component="h2">
               {title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body1" color="textSecondary" component="p">
               {shortDesc}
             </Typography>
           </CardContent>
         </CardActionArea>
-        {/* <CardActions>
-      <Button size="small" color="primary">
-        Share
-      </Button>
-      <Button size="small" color="primary">
-        Learn More
-      </Button>
-    </CardActions> */}
       </Card>
     </Link>
   );

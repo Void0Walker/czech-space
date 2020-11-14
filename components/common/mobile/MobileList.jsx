@@ -33,7 +33,7 @@ export default function MobileList({ toggleDrawer, navigationPages }) {
   let path = useRouter();
   path = path.pathname;
   const classes = useStyles();
-  console.log(path);
+  // console.log(path);
 
   return (
     <div className={classes.root}>

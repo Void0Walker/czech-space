@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
-import ResponsiveCard from "../components/homepage/ResponsiveCard";
+import ResponsiveCard from "../components/common/ResponsiveCard";
 import parser from "ua-parser-js";
 
 const useStyles = makeStyles((theme) => ({

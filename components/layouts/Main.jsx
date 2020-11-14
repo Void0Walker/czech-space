@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Main({ children, ...pageProps }) {
   const classes = useStyles();
 
-  console.log({ pageProps });
+  // console.log({ pageProps });
 
   return (
     <React.Fragment>

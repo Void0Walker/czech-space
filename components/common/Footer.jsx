@@ -61,7 +61,7 @@ const LightTooltip = withStyles((theme) => ({
 
 export default function Footer({ pageProps }) {
   const device = pageProps.device;
-  console.log({ footer: device });
+  // console.log({ footer: device });
 
   const classes = useStyles();
   return (
