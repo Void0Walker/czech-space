@@ -22,6 +22,7 @@ export default function Clanek({ article, bredCrumbPages, device }) {
 }
 
 export async function getServerSideProps(context) {
+  const apiUrl = process.env.API_URL;
   const ua = parser(context.req.headers["user-agent"]);
   let device = "desktop";
   if (ua.device) {
@@ -30,9 +31,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  let article = await fetch(
-    `http://localhost:1337/articles?slug=${context.query.clanek}`
-  );
+  let article = await fetch(`${apiUrl}/articles?slug=${context.query.clanek}`);
   article = await article.json();
   Array.isArray(article) ? (article = article[0]) : (article = article);
 
