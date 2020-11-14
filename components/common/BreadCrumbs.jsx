@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
     color: "#989898",
     textDecoration: "none",
     fontSize: "0.9rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.8rem",
+    },
     "&:hover": {
       textDecoration: "underline",
     },

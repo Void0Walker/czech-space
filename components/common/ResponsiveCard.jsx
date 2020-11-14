@@ -1,9 +1,11 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import {
+  makeStyles,
+  Card,
+  CardActionArea,
+  Typography,
+  CardContent,
+} from "@material-ui/core";
 import Link from "../Link";
 
 const useStyles = makeStyles({
@@ -12,10 +14,10 @@ const useStyles = makeStyles({
     borderBottom: "10px solid #f44336",
     boxShadow: "0 1px 2px rgba(0,0,0,0.15)",
     transition: "all 0.4s ease-in-out",
+    boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
     "&:hover": {
       transition: "0.4s",
       transform: "translate(0, -15px)",
-      boxShadow: "0 5px 15px rgba(0,0,0,0.3)",
     },
   },
 });
@@ -27,6 +29,7 @@ export default function ResponsiveCard({
   title,
   shortDesc,
   articleUrl,
+  oppurtunitiesCard,
 }) {
   const classes = useStyles();
 
@@ -49,19 +52,11 @@ export default function ResponsiveCard({
             <Typography gutterBottom variant="h5" component="h2">
               {title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body1" color="textSecondary" component="p">
               {shortDesc}
             </Typography>
           </CardContent>
         </CardActionArea>
-        {/* <CardActions>
-      <Button size="small" color="primary">
-        Share
-      </Button>
-      <Button size="small" color="primary">
-        Learn More
-      </Button>
-    </CardActions> */}
       </Card>
     </Link>
   );
