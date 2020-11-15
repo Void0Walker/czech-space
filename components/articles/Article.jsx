@@ -51,7 +51,16 @@ export default function Article({ article, altFloat, device }) {
         <PreviewWysiwyg data={article.articleDescription}></PreviewWysiwyg>
       </Grid>
       <Grid item xs={12}>
-        {article.attachments ? (
+        <Typography style={{ fontWeight: 600 }}>Autor</Typography>
+        <Typography>{article.users_permissions_user.username}</Typography>
+        <Typography>{article.users_permissions_user.position}</Typography>
+        <a href={`mailto:${article.users_permissions_user.email}`}>
+          <Typography>{article.users_permissions_user.email}</Typography>
+        </a>
+      </Grid>
+      <br />
+      <Grid item xs={12}>
+        {article.attachments.length > 0 ? (
           <Typography style={{ fontWeight: 600 }}>Přílohy:</Typography>
         ) : (
           ""
@@ -61,7 +70,7 @@ export default function Article({ article, altFloat, device }) {
               <a
                 key={i}
                 href={e.Link}
-                style={{ color: "#1587c0" }}
+                // style={{ color: "#1587c0" }}
                 target="_blank"
               >
                 <Typography style={{ fontWeight: 600 }}>
