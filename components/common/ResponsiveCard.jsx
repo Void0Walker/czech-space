@@ -19,37 +19,58 @@ const useStyles = makeStyles({
       transition: "0.4s",
       transform: "translate(0, -15px)",
     },
+    minHeight: 300,
+  },
+  newsArticle: {
+    borderColor: "black",
+  },
+  opportunitiesArticle: {
+    borderColor: "#ff3d00",
   },
 });
 
 export default function ResponsiveCard({
   alt,
-  customColor,
   image,
   title,
   shortDesc,
   articleUrl,
   oppurtunitiesCard,
+  category,
 }) {
   const classes = useStyles();
-
+  console.log(category);
   return (
     <Link
       href={articleUrl ? articleUrl : "/"}
       // as={articleUrl ? articleUrl : "/"}
       style={{ textDecoration: "none" }}
     >
-      <Card className={classes.root} style={{ borderColor: `${customColor}` }}>
+      <Card
+        className={`${classes.root} ${
+          category === "News"
+            ? classes.newsArticle
+            : classes.opportunitiesArticle
+        }`}
+      >
         <CardActionArea>
-          <div style={{ textAlign: "center", width: "100%" }}>
+          <div
+          // style={{
+          //   textAlign: "center",
+          //   width: "100%",
+          //   height: 200,
+          //   backgroundImage: `url(${image})`,
+          // }}
+          >
             <img
               alt={alt}
               src={image}
               style={{ height: "auto", width: "100%" }}
+              // style={{ objectFit: "cover" }}
             ></img>
           </div>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom style={{ fontSize: "1.2rem" }}>
               {title}
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p">

@@ -1,7 +1,8 @@
 import React from "react";
-import { Grid, Typography, makeStyles } from "@material-ui/core";
+import { Grid, Typography, makeStyles, Button } from "@material-ui/core";
 import ResponsiveCard from "../components/common/ResponsiveCard";
 import parser from "ua-parser-js";
+import Router from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -14,74 +15,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const articles = [
-  {
-    id: 1,
-    title: "O TERMINOLOGII",
-    shortDesc: `Pohyb je základní přírodní jev, fenomén, který patří k nejrůznějším
-projevům všech součástí našeho světa. Jeho druhů může být vícero a
-proto je i v lidské řeči, češtinu nevyjímaje, řada výrazů, kterými
-jsou tyto pohyby nazývány. Fyzická konstituce těla člověku umožňuje
-vlastní silou pohyb po pevném povrchu. Tedy ve dvou rozměrech, když
-ve třetím rozměru jsou jeho možnosti pohybu velmi omezené.`,
-    img: "/space-carousel/gtnasa.jpg",
-    alt: "nasa",
-    category: "other",
-    articleUrl: "/cs/o-nas/o-terminologii",
-  },
-  {
-    id: 2,
-    title: "VZHŮRU NA MĚSÍC",
-    shortDesc: `Česká kosmická kancelář navázala spolupráci s americkou společností Astrobotic Technology, která našim pracovištím nabízí dopravu malého vědeckého zařízení na povrch Měsíce. Bližší informace o technických i finančních aspektech budou poskytnuty na připravovaném workshopu, který se uskuteční 23. listopadu 2017 v kanceláři CSO.`,
-    img: "/space-carousel/n42_lander_all.jpeg",
-    alt: "lander_all",
-    category: "space",
-    articleUrl: "/cs/o-nas/vzhuru-na-mesic",
-  },
-  {
-    id: 3,
-    title: "OVLIVNĚTE VÝZKUM NA ISS",
-    shortDesc: `Evropská kosmická agentura vyzývá vědeckou komunitu k účasti na diskuzi o budoucím výzkumu zaměřeném na biologii rostlin v podmínkách kosmického letu. K této příležitosti uspořádá 20. listopadu 2017 workshop, který se uskuteční ve středisku ESA ESTEC. Výstupy ovlivní chystanou výzvu na nové experimenty pro ISS.`,
-    img: "/space-carousel/n41_plants.jpg",
-    alt: "lander_all",
-    articleUrl: "/cs/aktuality/ovlivnete-vyzkum-na-iss",
-    category: "",
-  },
-  {
-    id: 4,
-    title: "KOSMICKÁ AKADEMIE 2017",
-    shortDesc: `Česká kosmická kancelář zahájila druhý ročník vzdělávacího projektu Space Academy – Kosmická akademie pro nadané studenty. Letos se jej účastní celkem 13 chlapců a děvčat ve věku od 10 do 18 let, pro které je připraven bohatý program spojený s návštěvou zajímavých míst a osobností české kosmonautiky.`,
-    img: "/space-carousel/01-ucastnici.jpg",
-    alt: "people",
-    category: "vox-populi",
-    articleUrl: "/cs/o-nas/kosmicka-akademie-2017",
-  },
-  {
-    id: 5,
-    title: "VĚDA PRO DSG",
-    shortDesc: `Česká kosmická kancelář zahájila druhý ročník vzdělávacího projektu Space Academy – Kosmická akademie pro nadané studenty. Letos se jej účastní celkem 13 chlapců a děvčat ve věku od 10 do 18 let, pro které je připraven bohatý program spojený s návštěvou zajímavých míst a osobností české kosmonautiky.`,
-    img: "/space-carousel/n40_dsg.jpg",
-    alt: "lander_all",
-    category: "space",
-    articleUrl: "/cs/prilezitosti/veda-pro-dsg",
-  },
-  {
-    id: 6,
-    title: "POVÍDÁNÍ S ASTRONAUTKOU",
-    shortDesc: `Čeští studenti se ve středu 27. září 2017 setkali se s americkou astronautkou Dorothy Metcalf-Lindenburgerovou, jež se v roce 2010 vydala na patnáctidenní misi raketoplánu Discovery k Mezinárodní kosmické stanici. Vzdělávací akci uspořádala Česká kosmická kancelář ve spolupráci s Americkým centrem Velvyslanectví USA v Praze.`,
-    img: "/space-carousel/metc09.jpg",
-    alt: "lander_all",
-    category: "vox-populi",
-    articleUrl: "/cs/o-nas/povidani-s-astronautkou",
-  },
-];
 const colorMap = {
   space: "#231F20",
-  other: "#f44336",
-  news: "#262261",
+  Opportunities: "#f44336",
+  News: "#262261",
+  News: "#262261",
   "vox-populi": "#F05A28",
 };
-export default function Index() {
+export default function Index({ articles }) {
+  console.log({ articles });
+
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -98,15 +41,30 @@ export default function Index() {
         {articles.map((e) => (
           <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={e.id}>
             <ResponsiveCard
+              alt={e.articleAlt}
+              image={e.articleImage ? e.articleImage[0].formats.small.url : ""}
+              key={e.id}
+              title={e.articleTitle}
+              shortDesc={e.articleSubTitlePlain}
+              articleUrl={"/cs/prilezitosti/" + e.slug}
               customColor={colorMap[e.category]}
-              image={e.img}
-              shortDesc={e.shortDesc}
-              title={e.title}
-              alt={e.alt}
-              articleUrl={e.articleUrl}
+              category={e.category.categoryName}
+              // oppurtunitiesCard={true}
             ></ResponsiveCard>
           </Grid>
         ))}
+        <Grid item xs={12}>
+          <Button
+            style={{ fontSize: "1.2rem", background: "white", borderRadius: 0 }}
+            variant="contained"
+            onClick={(event) => {
+              event.preventDefault();
+              Router.push("/cs/aktuality");
+            }}
+          >
+            Zobrazit více
+          </Button>
+        </Grid>
       </Grid>
     </React.Fragment>
   );
@@ -117,16 +75,28 @@ export async function getServerSideProps(context) {
   const page = "/";
   const ua = parser(context.req.headers["user-agent"]);
   const apiUrl = process.env.API_URL;
-  let pageContent = await fetch(`${process.env.API_URL}/home-page`);
-  pageContent = await pageContent.json();
-
   let device = "desktop";
+
+  let [pageContent, articles] = await Promise.all([
+    fetch(`${process.env.API_URL}/home-page`),
+    fetch(`${process.env.API_URL}/articles?_sort=published_at:desc&_limit=4`),
+  ]);
+
+  [pageContent, articles] = await Promise.all([
+    pageContent.json(),
+    articles.json(),
+  ]);
+
+  articles.forEach((e) => {
+    e["articleSubTitlePlain"] = e["articleSubTitle"].replace(/\*/gi, "");
+  });
+
   if (ua.device) {
     if (ua.device.type) {
       device = ua.device.type;
     }
   }
   return {
-    props: { page, pageTitle, device, apiUrl, pageContent },
+    props: { page, pageTitle, device, apiUrl, pageContent, articles },
   };
 }

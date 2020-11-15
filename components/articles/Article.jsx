@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Article({ article, altFloat, device }) {
   const classes = useStyles();
-  // console.log({ article });
+  console.log({ attachments: article.attachments });
   return (
     <div>
       <Grid item xs={12}>
@@ -51,11 +51,22 @@ export default function Article({ article, altFloat, device }) {
         <PreviewWysiwyg data={article.articleDescription}></PreviewWysiwyg>
       </Grid>
       <Grid item xs={12}>
-        {article.articleFiles ? <Typography>Přílohy</Typography> : ""}
-        {article.articleFiles
-          ? article.articleFiles.map((e, i) => (
-              <a key={i} href={e.url} style={{ color: "#1587c0" }}>
-                <Typography>{e.name}</Typography>
+        {article.attachments ? (
+          <Typography style={{ fontWeight: 600 }}>Přílohy:</Typography>
+        ) : (
+          ""
+        )}
+        {article.attachments
+          ? article.attachments.map((e, i) => (
+              <a
+                key={i}
+                href={e.Link}
+                style={{ color: "#1587c0" }}
+                target="_blank"
+              >
+                <Typography style={{ fontWeight: 600 }}>
+                  {e.AttachmentName}
+                </Typography>
               </a>
             ))
           : ""}

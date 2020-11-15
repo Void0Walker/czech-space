@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     transition: "0.2s",
     "&:hover": {
-      boxShadow: "2px 2px 5px grey, -2px -2px 5px grey",
+      // boxShadow: "2px 2px 5px grey, -2px -2px 5px grey",
     },
   },
   cardDescription: {

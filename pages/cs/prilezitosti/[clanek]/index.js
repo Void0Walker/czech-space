@@ -34,8 +34,6 @@ export async function getServerSideProps(context) {
   let article = await fetch(`${apiUrl}/articles?slug=${context.query.clanek}`);
   article = await article.json();
 
-  console.log({ here: article });
-
   Array.isArray(article) ? (article = article[0]) : (article = article);
 
   const pageTitle = `${article.articleTitle} | Czech Space`;

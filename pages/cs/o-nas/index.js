@@ -62,6 +62,7 @@ export default function Aktuality({
             textAlign: "center",
             marginLeft: "10%",
             marginRight: "10%",
+            fontSize: "1.1rem",
           }}
         >
           <WysiWyg data={pageContent.description}></WysiWyg>
