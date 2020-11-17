@@ -83,7 +83,7 @@ export default function MobileList({ toggleDrawer, navigationPages }) {
             <HomeIcon />
           </ListItemIcon>
           <ListItemText
-            primary="DOMU"
+            primary="DOMŮ"
             primaryTypographyProps={{
               style: {
                 fontWeight: path && path === "/" ? 700 : 500,

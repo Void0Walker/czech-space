@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, AppBar, Typography } from "@material-ui/core";
+import { fade, makeStyles, AppBar, Typography } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from "@material-ui/icons/Info";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
@@ -113,16 +113,18 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   search: {
-    padding: 8,
+    borderRadius: theme.shape.borderRadius,
+    // padding: 8,
     width: "25%",
     textAlign: "left",
-    marginLeft: "auto",
-    marginRight: 0,
+    marginLeft: "8px",
+    marginRight: 8,
     cursor: "pointer",
     background: "#1D6B87",
     color: "white",
     [theme.breakpoints.down("sm")]: {
       width: "12%",
+      marginLeft: "auto",
     },
   },
   navigationText: {
@@ -154,7 +156,7 @@ export default function ButtonAppBar({ apiUrl }) {
           }}
         >
           <HomeIcon></HomeIcon>
-          <Typography className={classes.navigationText}>DOMU</Typography>
+          <Typography className={classes.navigationText}>DOMŮ</Typography>
         </div>
         <div
           className={`${classes.navigationEntryAktuality} ${

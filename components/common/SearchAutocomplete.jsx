@@ -4,6 +4,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { useRouter } from "next/router";
 import { withStyles } from "@material-ui/core/styles";
+import SearchIcon from "@material-ui/icons/Search";
 
 const categoryMap = {
   News: "/cs/aktuality",
@@ -14,17 +15,14 @@ const CssTextField = withStyles({
   root: {
     maxWidth: "100%",
     "& label.Mui-focused": {
-      // color: "white",
       color: "white",
     },
     "& .MuiInput-underline:after": {
       borderBottomColor: "transparent",
-      // color: "white",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "transparent",
-        // borderWidth: "2px",
         color: "black",
       },
       "&:hover fieldset": {
@@ -102,13 +100,13 @@ export default function Asynchronous({ apiUrl, fullWidth }) {
         option.articleTitle === value.articleTitle
       }
       getOptionLabel={(option) => option.articleTitle}
-      freeSolo
+      // freeSolo
       options={options}
       loading={loading}
       renderInput={(params) => (
         <CssTextField
           {...params}
-          label="Hledat..."
+          placeholder=" Hledat"
           variant="outlined"
           InputLabelProps={{
             style: { color: "#fff", fontSize: "1.2rem" },
@@ -118,6 +116,7 @@ export default function Asynchronous({ apiUrl, fullWidth }) {
               color: "white",
             },
             ...params.InputProps,
+            startAdornment: <SearchIcon />,
             endAdornment: (
               <React.Fragment>
                 {loading ? <CircularProgress size={20} /> : null}
