@@ -58,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
       width: "14%",
       padding: "16px",
     },
+    [theme.breakpoints.down("xs")]: {
+      width: "14%",
+      padding: 10,
+    },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -75,6 +79,10 @@ const useStyles = makeStyles((theme) => ({
       width: "12%",
       padding: "16px",
     },
+    [theme.breakpoints.down("xs")]: {
+      width: "12%",
+      padding: 10,
+    },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -91,6 +99,10 @@ const useStyles = makeStyles((theme) => ({
       width: "16%",
       padding: "16px",
     },
+    [theme.breakpoints.down("xs")]: {
+      width: "16%",
+      padding: 10,
+    },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -106,6 +118,10 @@ const useStyles = makeStyles((theme) => ({
       width: "12%",
       padding: "16px",
     },
+    [theme.breakpoints.down("xs")]: {
+      width: "12%",
+      padding: 10,
+    },
     width: "13%",
     textAlign: "center",
     cursor: "pointer",
@@ -115,10 +131,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   active: {
-    padding: 12,
-    // width: "12%",
+    // padding: 12,
     [theme.breakpoints.down("sm")]: {
       padding: "16px",
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: 10,
     },
     textAlign: "center",
     cursor: "pointer",
@@ -139,11 +157,20 @@ const useStyles = makeStyles((theme) => ({
       width: "29%",
       marginLeft: "auto",
     },
+    [theme.breakpoints.down("xs")]: {
+      width: "33%",
+      margin: 0,
+      padding: 0,
+      borderRadius: 0,
+    },
   },
   navigationText: {
     fontSize: "0.9rem",
     [theme.breakpoints.down("sm")]: {
       fontSize: "0.7rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.6rem",
     },
   },
 }));

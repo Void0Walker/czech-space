@@ -106,7 +106,7 @@ export default function Asynchronous({ apiUrl, fullWidth }) {
       renderInput={(params) => (
         <CssTextField
           {...params}
-          placeholder=" Hledat"
+          placeholder="Hledat"
           variant="outlined"
           InputLabelProps={{
             style: { color: "#fff", fontSize: "1.2rem" },
