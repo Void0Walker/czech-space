@@ -36,11 +36,17 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: "100%",
     },
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
   csoImageContainer: {
     marginRight: "10%",
     [theme.breakpoints.down("md")]: {
       marginRight: "1%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
     },
   },
   navigationEntryAktuality: {
@@ -50,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     width: "12%",
     [theme.breakpoints.down("sm")]: {
       width: "14%",
+      padding: "16px",
     },
     textAlign: "center",
     cursor: "pointer",
@@ -65,7 +72,8 @@ const useStyles = makeStyles((theme) => ({
     padding: 12,
     width: "12%",
     [theme.breakpoints.down("sm")]: {
-      width: "10%",
+      width: "12%",
+      padding: "16px",
     },
     textAlign: "center",
     cursor: "pointer",
@@ -80,7 +88,8 @@ const useStyles = makeStyles((theme) => ({
     padding: 12,
     width: "12%",
     [theme.breakpoints.down("sm")]: {
-      width: "14%",
+      width: "16%",
+      padding: "16px",
     },
     textAlign: "center",
     cursor: "pointer",
@@ -93,10 +102,11 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     background: "#003F5F",
     padding: 12,
+    [theme.breakpoints.down("sm")]: {
+      width: "12%",
+      padding: "16px",
+    },
     width: "13%",
-    // [theme.breakpoints.down("sm")]: {
-    //   width: "10%",
-    // },
     textAlign: "center",
     cursor: "pointer",
     "&:hover": {
@@ -106,7 +116,10 @@ const useStyles = makeStyles((theme) => ({
   },
   active: {
     padding: 12,
-    width: "12%",
+    // width: "12%",
+    [theme.breakpoints.down("sm")]: {
+      padding: "16px",
+    },
     textAlign: "center",
     cursor: "pointer",
     background: "#f44336",
@@ -123,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#1D6B87",
     color: "white",
     [theme.breakpoints.down("sm")]: {
-      width: "12%",
+      width: "29%",
       marginLeft: "auto",
     },
   },
