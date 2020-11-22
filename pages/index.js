@@ -23,7 +23,7 @@ const colorMap = {
   "vox-populi": "#F05A28",
 };
 export default function Index({ articles }) {
-  console.log({ articles });
+  // console.log({ articles });
 
   const classes = useStyles();
   return (
@@ -79,7 +79,9 @@ export async function getServerSideProps(context) {
 
   let [pageContent, articles] = await Promise.all([
     fetch(`${process.env.API_URL}/home-page`),
-    fetch(`${process.env.API_URL}/articles?_sort=published_at:desc&_limit=4`),
+    fetch(
+      `${process.env.API_URL}/articles?_sort=published_at:desc&_limit=4&category.categoryName_in=Opportunities&category.categoryName_in=News`
+    ),
   ]);
 
   [pageContent, articles] = await Promise.all([

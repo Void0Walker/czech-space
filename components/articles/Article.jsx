@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Grid, makeStyles } from "@material-ui/core";
+import { Typography, Grid, makeStyles, Divider } from "@material-ui/core";
 import PreviewWysiwyg from "./WysiWyg";
 
 const useStyles = makeStyles((theme) => ({
@@ -51,11 +51,32 @@ export default function Article({ article, altFloat, device }) {
         <PreviewWysiwyg data={article.articleDescription}></PreviewWysiwyg>
       </Grid>
       <Grid item xs={12}>
+        <br />
+        <Divider style={{ background: "#989898", height: 1, maxWidth: 200 }} />
+        <br />
         <Typography style={{ fontWeight: 600 }}>Autor</Typography>
-        <Typography>{article.users_permissions_user.username}</Typography>
-        <Typography>{article.users_permissions_user.position}</Typography>
-        <a href={`mailto:${article.users_permissions_user.email}`}>
-          <Typography>{article.users_permissions_user.email}</Typography>
+        <Typography>
+          {article.users_permissions_user
+            ? article.users_permissions_user.username
+            : ""}
+        </Typography>
+        <Typography>
+          {article.users_permissions_user
+            ? article.users_permissions_user.position
+            : ""}
+        </Typography>
+        <a
+          href={`mailto:${
+            article.users_permissions_user
+              ? article.users_permissions_user.email
+              : ""
+          }`}
+        >
+          <Typography>
+            {article.users_permissions_user
+              ? article.users_permissions_user.email
+              : ""}
+          </Typography>
         </a>
       </Grid>
       <br />
