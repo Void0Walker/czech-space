@@ -66,7 +66,7 @@ export default function Asynchronous({ apiUrl, fullWidth }) {
               articleTitle: e.articleTitle,
               // articleDescription: e.articleDescription,
               slug: e.slug,
-              category: e.category.categoryName,
+              category: e.category ? e.category.categoryName : null,
             };
           })
         );
