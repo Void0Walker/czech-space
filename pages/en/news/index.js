@@ -1,8 +1,9 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
+import ArticleRow from "../../../components/aktuality/ArticleRow";
 import BreadCrumbs from "../../../components/common/BreadCrumbs";
 import Pagination from "../../../components/common/Pagination";
-import ResponsiveCard from "../../../components/common/ResponsiveCard";
+import { useRouter } from "next/router";
 import parser from "ua-parser-js";
 
 const colorMap = {
@@ -17,10 +18,13 @@ export default function Aktuality({
   bredCrumbPages,
   articles,
   articleCount,
-  // page,
   device,
 }) {
+  // const router = useRouter();
+  // console.log(articleCount);
+
   const lastPage = Math.ceil(articleCount / 10);
+
   return (
     <Grid
       container
@@ -33,18 +37,12 @@ export default function Aktuality({
         <BreadCrumbs pages={bredCrumbPages} />
       </Grid>
       {articles.map((e) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={e.id}>
-          <ResponsiveCard
-            alt={e.articleAlt}
-            image={e.articleImage ? e.articleImage[0].url : ""}
-            key={e.id}
-            title={e.articleTitle}
-            shortDesc={e.articleSubTitlePlain}
-            articleUrl={"/cs/prilezitosti/" + e.slug}
-            customColor={colorMap[e.category]}
-            oppurtunitiesCard={true}
-          />
-        </Grid>
+        <ArticleRow
+          {...e}
+          key={e.id}
+          customColor={colorMap[e.category]}
+          page={rootPage}
+        />
       ))}
       <Grid container item xs={12} justify="center">
         <br />
@@ -56,12 +54,12 @@ export default function Aktuality({
 
 export async function getServerSideProps({ query: { page = 1 }, req }) {
   const ua = parser(req.headers["user-agent"]);
+  const pageTitle = "Aktuality | Czech Space";
   const apiUrl = process.env.API_URL;
-  const pageTitle = "Příležitosti | Czech Space";
-  const rootPage = "/cs/prilezitosti";
+  const rootPage = "/cs/aktuality";
   const bredCrumbPages = {
-    subpageName: "Příležitosti",
-    subpagePath: "/cs/prilezitosti",
+    subpageName: "Aktuality",
+    subpagePath: "/cs/aktuality",
   };
 
   let device = "desktop";
@@ -71,14 +69,15 @@ export async function getServerSideProps({ query: { page = 1 }, req }) {
     }
   }
 
+  console.log({ device });
+
   const start = +page === 1 ? 0 : (+page - 1) * 10;
 
   let [articleCount, articles] = await Promise.all([
+    fetch(`${process.env.API_URL}/articles/count?category.categoryName=News`),
+    // fetch(`${process.env.API_URL}/articles?_limit=10&_start=${start}`),
     fetch(
-      `${process.env.API_URL}/articles/count?category.categoryName=Opportunities`
-    ),
-    fetch(
-      `${process.env.API_URL}/articles?category.categoryName=Opportunities&_limit=10&_start=${start}`
+      `${process.env.API_URL}/articles?category.categoryName=News&_limit=10&_start=${start}`
     ),
   ]);
 

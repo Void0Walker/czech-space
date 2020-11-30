@@ -59,10 +59,8 @@ const LightTooltip = withStyles((theme) => ({
   },
 }))(Tooltip);
 
-export default function Footer({ pageProps }) {
+export default function Footer({ pageProps, languageSelected }) {
   const device = pageProps.device;
-  // console.log({ footer: device });
-
   const classes = useStyles();
   return (
     <div className={classes.footerRoot}>
@@ -125,7 +123,14 @@ export default function Footer({ pageProps }) {
             fontSize: device && device === "mobile" ? "0.7rem" : "0.9rem",
           }}
         >
-          E-mail: info@czech-space.cz
+          <a
+            href={"mailto:info@czech-space.cz"}
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            {languageSelected === "cs"
+              ? "E-mail: info@czech-space.cz"
+              : "Email: info@czech-space.cz"}
+          </a>
         </Typography>
         <Typography
           style={{
@@ -133,7 +138,9 @@ export default function Footer({ pageProps }) {
             fontSize: device && device === "mobile" ? "0.7rem" : "0.9rem",
           }}
         >
-          Telefonní číslo: +420 603 319 407
+          {languageSelected === "cs"
+            ? "Telefonní číslo: +420 603 319 407"
+            : "Phone number: +420 603 319 407"}
         </Typography>
       </div>
     </div>

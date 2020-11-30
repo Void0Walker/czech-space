@@ -6,6 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../components/theme";
 import Layout from "../components/layouts/Main";
 import "react-multi-carousel/lib/styles.css";
+
 // import "highlight.js/styles/solarized-dark.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 

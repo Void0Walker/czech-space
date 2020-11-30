@@ -37,7 +37,7 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-export default function Asynchronous({ apiUrl, fullWidth }) {
+export default function Asynchronous({ apiUrl, fullWidth, languageSelected }) {
   const router = useRouter();
   const handleTextFieldSet = (event, value) => {
     console.log(value);
@@ -106,7 +106,7 @@ export default function Asynchronous({ apiUrl, fullWidth }) {
       renderInput={(params) => (
         <CssTextField
           {...params}
-          placeholder="Hledat"
+          placeholder="Search"
           variant="outlined"
           InputLabelProps={{
             style: { color: "#fff", fontSize: "1.2rem" },

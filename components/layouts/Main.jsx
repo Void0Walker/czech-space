@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import Footer from "../common/Footer";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import MobileAppBar from "../common/mobile/MobileAppBar";
 
 const useStyles = makeStyles((theme) => ({
@@ -84,8 +84,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Main({ children, ...pageProps }) {
+  const router = useRouter();
   const classes = useStyles();
-  console.log({ pageProps });
+  let languageSelected = "cs";
+  let baseUrl = router.pathname.split("/");
+  if (baseUrl.includes("en")) {
+    languageSelected = "en";
+  } else {
+    languageSelected = "cs";
+  }
   return (
     <React.Fragment>
       <div style={{ marginBottom: "150px", width: "100%" }}>
@@ -93,6 +100,7 @@ export default function Main({ children, ...pageProps }) {
           <MobileAppBar apiUrl={pageProps.apiUrl} />
         ) : (
           <AppBar
+            languageSelected={languageSelected}
             position="fixed"
             page={pageProps.page}
             apiUrl={pageProps.apiUrl}
@@ -117,10 +125,6 @@ export default function Main({ children, ...pageProps }) {
               </div>
             ) : (
               <div className={classes.homepageTextContainer}>
-                {/* <Typography className={classes.homepageText}>CZECH</Typography>
-                <Typography className={classes.homepageText}>SPACE</Typography>
-                <Typography className={classes.homepageText}>OFFICE</Typography> */}
-
                 {pageProps.pageContent.Title.replace(/\s/gi, "\n")
                   .split("\n")
                   .map((i) => (
@@ -141,14 +145,14 @@ export default function Main({ children, ...pageProps }) {
                   Router.push("/cs/aktuality");
                 }}
               >
-                Aktuality
+                {languageSelected === "cs" ? "Aktuality" : "News"}
               </Button>
             </div>
           </div>
         ) : (
           ""
         )}
-        {pageProps.page === "/cs/o-nas" ? (
+        {pageProps.page === "/cs/o-nas" || pageProps.page === "/en/about-us" ? (
           <Grid container>{children}</Grid>
         ) : (
           <Container
@@ -159,7 +163,7 @@ export default function Main({ children, ...pageProps }) {
           </Container>
         )}
       </div>
-      <Footer pageProps={pageProps} />
+      <Footer pageProps={pageProps} languageSelected={languageSelected} />
     </React.Fragment>
   );
 }
