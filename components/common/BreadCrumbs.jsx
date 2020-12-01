@@ -28,10 +28,10 @@ export default function SimpleBreadcrumbs(props) {
         color="inherit"
         component={Link}
         naked
-        href="/"
-        as="/"
+        href={props.pages.language === "en" ? "/en" : "/"}
+        as={props.pages.language === "en" ? "/en" : "/"}
       >
-        Hlavní stránka
+        {props.pages.language === "en" ? "Home" : "Hlavní stránka"}
       </Typography>
       <Typography
         className={classes.crumbStyle}

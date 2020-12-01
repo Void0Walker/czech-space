@@ -142,7 +142,9 @@ export default function Main({ children, ...pageProps }) {
                 endIcon={<TrendingFlatIcon fontSize="inherit" />}
                 onClick={(event) => {
                   event.preventDefault();
-                  Router.push("/cs/aktuality");
+                  const url =
+                    languageSelected === "cs" ? "/cs/aktuality" : "/en/news";
+                  Router.push(url);
                 }}
               >
                 {languageSelected === "cs" ? "Aktuality" : "News"}

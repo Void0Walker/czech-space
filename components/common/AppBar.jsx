@@ -252,7 +252,11 @@ export default function ButtonAppBar({ apiUrl, languageSelected }) {
         </div>
         <div
           className={`${classes.navigationEntryAktuality} ${
-            path === "/cs/aktuality" ? classes.active : ""
+            path === "/cs/aktuality"
+              ? classes.active
+              : path === "/en/news"
+              ? classes.active
+              : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -266,7 +270,11 @@ export default function ButtonAppBar({ apiUrl, languageSelected }) {
         </div>
         <div
           className={`${classes.navigationPrilezitosti} ${
-            path === "/cs/prilezitosti" ? classes.active : ""
+            path === "/cs/prilezitosti"
+              ? classes.active
+              : path === "/en/opportunities"
+              ? classes.active
+              : ""
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -298,7 +306,11 @@ export default function ButtonAppBar({ apiUrl, languageSelected }) {
         </div>
         <div
           className={`${classes.navigationArchiv} ${
-            path === "/cs/archiv" ? classes.active : ""
+            path === "/cs/archiv"
+              ? classes.active
+              : path === "/en/archive"
+              ? classes.active
+              : " "
           }`}
           onClick={(event) => {
             event.preventDefault();
@@ -310,7 +322,7 @@ export default function ButtonAppBar({ apiUrl, languageSelected }) {
             {languageSelected === "cs" ? "ARCHIV" : "ARCHIVE"}
           </Typography>
         </div>
-        <div
+        {/* <div
           className={classes.languageSelector}
           onClick={(event) => {
             event.preventDefault();
@@ -319,7 +331,7 @@ export default function ButtonAppBar({ apiUrl, languageSelected }) {
           }}
         >
           {languageSelected === "cs" ? "EN" : "CS"}
-        </div>
+        </div> */}
         <div className={classes.search}>
           <SearchAutocomplete
             apiUrl={apiUrl}

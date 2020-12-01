@@ -33,6 +33,7 @@ export async function getServerSideProps(context) {
 
   let article = await fetch(`${apiUrl}/articles?slug=${context.query.article}`);
   article = await article.json();
+
   Array.isArray(article) ? (article = article[0]) : (article = article);
 
   const pageTitle = `${article.articleTitle} | Czech Space`;
@@ -40,8 +41,8 @@ export async function getServerSideProps(context) {
   const bredCrumbPages = {
     name: article.articleTitle,
     friendlyURL: article.slug,
-    subpageName: "News",
-    subpagePath: "/en/news",
+    subpageName: "Opportunities",
+    subpagePath: "/en/opportunities",
     language: "en",
   };
 

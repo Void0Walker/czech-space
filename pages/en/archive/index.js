@@ -24,7 +24,7 @@ export default function Archive({ page, bredCrumbPages }) {
         <div
           dangerouslySetInnerHTML={{
             __html:
-              '<iframe src="https://www.czechspace.cz/cs/archiv" width="100%" height="800" frameborder="no" allowfullscreen="true"></iframe>',
+              '<iframe src="https://www.czechspace.cz/en/taxonomy/term/191" width="100%" height="800" frameborder="no" allowfullscreen="true"></iframe>',
           }}
         ></div>
       </Grid>
@@ -47,6 +47,7 @@ export async function getServerSideProps(context) {
   const bredCrumbPages = {
     subpageName: "Archive",
     subpagePath: "/en/archive",
+    language: "en",
   };
 
   return {
